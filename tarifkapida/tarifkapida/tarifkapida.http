@@ -1,0 +1,6 @@
+@tarifkapida_HostAddress = http://localhost:5043
+
+GET {{tarifkapida_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
