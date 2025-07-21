@@ -30,7 +30,7 @@ namespace tarifkapida.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecipeId"));
 
-                    b.Property<DateTime>("RecipeCreatedAt")
+                    b.Property<DateTime?>("RecipeCreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("RecipeDescription")
@@ -53,18 +53,18 @@ namespace tarifkapida.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RecipeUpdatedAt")
+                    b.Property<DateTime?>("RecipeUpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ReviewId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UsersUserId")
-                        .HasColumnType("int");
-
                     b.HasKey("RecipeId");
 
-                    b.HasIndex("UsersUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("RECIPE");
                 });
@@ -100,6 +100,8 @@ namespace tarifkapida.Migrations
 
                     b.HasIndex("RecipeId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("REVIEW");
                 });
 
@@ -118,9 +120,6 @@ namespace tarifkapida.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -132,9 +131,12 @@ namespace tarifkapida.Migrations
 
             modelBuilder.Entity("tarifkapida.Models.Recipe", b =>
                 {
-                    b.HasOne("tarifkapida.Models.Users", null)
-                        .WithMany("Recipe")
-                        .HasForeignKey("UsersUserId");
+                    b.HasOne("tarifkapida.Models.Users", "User")
+                        .WithMany("Recipes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("tarifkapida.Models.Review", b =>
@@ -145,7 +147,15 @@ namespace tarifkapida.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("tarifkapida.Models.Users", "User")
+                        .WithMany("Reviews")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Recipe");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("tarifkapida.Models.Recipe", b =>
@@ -155,7 +165,9 @@ namespace tarifkapida.Migrations
 
             modelBuilder.Entity("tarifkapida.Models.Users", b =>
                 {
-                    b.Navigation("Recipe");
+                    b.Navigation("Recipes");
+
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

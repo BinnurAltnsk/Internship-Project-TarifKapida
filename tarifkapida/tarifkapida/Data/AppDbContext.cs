@@ -14,6 +14,33 @@ namespace tarifkapida.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Review - Recipe ilişkisi
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Recipe)
+                .WithMany(r => r.Reviews)
+                .HasForeignKey(r => r.RecipeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Review - User ilişkisi
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.Reviews)
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Recipe - User ilişkisi
+            modelBuilder.Entity<Recipe>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.Recipes)
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.SetNull); // User silinirse Recipe'yi silme, UserId'yi null yap
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -22,8 +49,8 @@ namespace tarifkapida.Data
             }
         }
 
-        public virtual DbSet<Recipe> RECIPE { get; set; }
-        public virtual DbSet<Review> REVIEW { get; set; }
-        public virtual DbSet<Users> USER { get; set; }
+        public DbSet<Recipe> RECIPE { get; set; }
+        public DbSet<Review> REVIEW { get; set; }
+        public DbSet<Users> USER { get; set; }
     }
 }

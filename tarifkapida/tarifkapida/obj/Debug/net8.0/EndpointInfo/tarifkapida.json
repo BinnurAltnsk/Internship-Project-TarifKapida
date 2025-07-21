@@ -18,6 +18,44 @@
                 "schema": {
                   "type": "array",
                   "items": {
+                    "$ref": "#/components/schemas/RecipeWithReviewsDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecipeWithReviewsDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecipeWithReviewsDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipe/GetRecipesTest": {
+      "get": {
+        "tags": [
+          "Recipe"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
                     "$ref": "#/components/schemas/Recipe"
                   }
                 }
@@ -812,12 +850,79 @@
             "format": "date-time",
             "nullable": true
           },
+          "user": {
+            "$ref": "#/components/schemas/Users"
+          },
           "reviews": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Review"
             },
             "nullable": true
+          },
+          "reviewId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecipeWithReviewsDto": {
+        "type": "object",
+        "properties": {
+          "recipeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recipeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "recipeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "recipeIngredients": {
+            "type": "string",
+            "nullable": true
+          },
+          "recipeInstructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "recipeImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "recipeCreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "recipeUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewDto"
+            },
+            "nullable": true
+          },
+          "reviewCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageRating": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -829,8 +934,45 @@
             "type": "integer",
             "format": "int32"
           },
+          "recipeId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "recipe": {
             "$ref": "#/components/schemas/Recipe"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user": {
+            "$ref": "#/components/schemas/Users"
+          },
+          "reviewText": {
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reviewCreatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reviewUpdatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewDto": {
+        "type": "object",
+        "properties": {
+          "reviewId": {
+            "type": "integer",
+            "format": "int32"
           },
           "recipeId": {
             "type": "integer",
@@ -855,6 +997,10 @@
           "reviewUpdatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -878,16 +1024,18 @@
             "type": "string",
             "nullable": true
           },
-          "recipe": {
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Review"
+            },
+            "nullable": true
+          },
+          "recipes": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Recipe"
             },
-            "nullable": true
-          },
-          "recipeId": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           }
         },

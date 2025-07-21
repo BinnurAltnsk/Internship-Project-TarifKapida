@@ -1,16 +1,24 @@
-﻿namespace tarifkapida.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace tarifkapida.Models
 {
-    public class Recipe
-    {
-        public int RecipeId { get; set; }
-        public string RecipeName { get; set; }
-        public string RecipeDescription { get; set; }
-        public string RecipeIngredients { get; set; }
-        public string RecipeInstructions { get; set; }
-        public string RecipeImageUrl { get; set; }
-        public int? UserId { get; set; } // Foreign key to Users table
-        public DateTime? RecipeCreatedAt { get; set; } = DateTime.Now;
-        public DateTime? RecipeUpdatedAt { get; set; } = DateTime.Now;
-        public List<Review>? Reviews { get; set; }
-    }
+public class Recipe
+{
+    [Key]
+    public int RecipeId { get; set; }
+    public string RecipeName { get; set; }
+    public string RecipeDescription { get; set; }
+    public string RecipeIngredients { get; set; }
+    public string RecipeInstructions { get; set; }
+    public string RecipeImageUrl { get; set; }
+    public int? UserId { get; set; }
+    public DateTime? RecipeCreatedAt { get; set; } = DateTime.Now;
+    public DateTime? RecipeUpdatedAt { get; set; } = DateTime.Now;
+    public Users? User { get; set; }
+    public List<Review> Reviews { get; set; } = new();
+
+    [ForeignKey("Review")]
+    public int ReviewId { get; set; }
+}
 }

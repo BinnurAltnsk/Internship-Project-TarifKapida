@@ -1,16 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace tarifkapida.Models
 {
     public class Review
-    {
+{
         public int ReviewId { get; set; }
-        public Recipe Recipe { get; set; } // Navigation property for related Recipe
-        public int RecipeId { get; set; } // Foreign key to Recipe table
-        public int UserId { get; set; } // Foreign key to Users table
+
+        public int RecipeId { get; set; }
+        public Recipe Recipe { get; set; }
+
+        public int UserId { get; set; }
+        public Users User { get; set; } // ✅ Bu çok önemli
+
         public string ReviewText { get; set; }
-        public int Rating { get; set; } // Rating out of 5
-        public DateTime ReviewCreatedAt { get; set; } = DateTime.Now;
-        public DateTime ReviewUpdatedAt { get; set; } = DateTime.Now;
+        public int Rating { get; set; }
+
+        public DateTime ReviewCreatedAt { get; set; }
+        public DateTime ReviewUpdatedAt { get; set; }
     }
 }

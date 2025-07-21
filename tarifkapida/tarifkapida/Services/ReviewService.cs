@@ -17,7 +17,10 @@ namespace tarifkapida.Services
         }
         public List<Review> GetReviews()
         {
-            return _dbContext.REVIEW.ToList();
+            return _dbContext.REVIEW
+        .Include(r => r.User)
+        .Include(r => r.Recipe)
+        .ToList();
         }
         public List<Review> GetReviewsByRecipeId(int recipeId)
         {
@@ -52,6 +55,19 @@ namespace tarifkapida.Services
             await _dbContext.SaveChangesAsync();
             return true;
         }
-
+        public List<ReviewDto> GetReviewDtos()
+        {
+            return _dbContext.REVIEW
+                .Include(r => r.User)
+                .Select(r => new ReviewDto
+                {
+                    ReviewId = r.ReviewId,
+                    ReviewText = r.ReviewText,
+                    Rating = r.Rating,
+                    UserId = r.UserId,
+                    ReviewCreatedAt = r.ReviewCreatedAt,
+                    ReviewUpdatedAt = r.ReviewUpdatedAt
+                }).ToList();
+        }
     }
 }

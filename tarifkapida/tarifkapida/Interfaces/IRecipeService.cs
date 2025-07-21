@@ -5,7 +5,8 @@ namespace tarifkapida.Interfaces
 {
     public interface IRecipeService
     {
-        Task<List<Recipe>> GetRecipesAsync();
+        Task<List<RecipeWithReviewsDto>> GetRecipesAsync();
+        Task<List<Recipe>> GetRecipesTestAsync();
         Task<Recipe?> GetRecipeByIdAsync(int recipeId);
         Task<Recipe> CreateRecipeAsync(Recipe recipe);
         Task<Recipe?> UpdateRecipeAsync(Recipe recipe);
