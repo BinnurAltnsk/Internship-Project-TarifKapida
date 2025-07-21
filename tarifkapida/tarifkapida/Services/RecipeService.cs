@@ -23,7 +23,7 @@ namespace tarifkapida.Services
             //    .ToListAsync();
             var recipes = await _dbContext.RECIPE
                 .Include(r => r.Reviews)
-                //.ThenInclude(rv =>rv.User)
+                .ThenInclude(rv =>rv.User)
                  // sadece test için
                 .ToListAsync();
 

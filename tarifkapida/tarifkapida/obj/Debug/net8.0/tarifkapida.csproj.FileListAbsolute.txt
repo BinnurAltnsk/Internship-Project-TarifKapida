@@ -164,10 +164,10 @@ C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\st
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkap.D1D6EEB1.Up2Date
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.dll
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\refint\tarifkapida.dll
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.pdb
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.genruntimeconfig.cache
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\ref\tarifkapida.dll
+C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

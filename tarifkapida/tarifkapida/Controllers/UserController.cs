@@ -80,5 +80,18 @@ namespace tarifkapida.Controllers
             }
             return NoContent();
         }
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody] Users user)
+        {
+            try
+            {
+                var registeredUser = await userService.RegisterAsync(user);
+                return Ok(new { message = "Kayıt başarılı", userId = registeredUser.UserId });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

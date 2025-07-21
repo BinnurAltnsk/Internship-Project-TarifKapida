@@ -65,6 +65,7 @@ namespace tarifkapida.Services
                     ReviewText = r.ReviewText,
                     Rating = r.Rating,
                     UserId = r.UserId,
+                    Username = r.User.Username,
                     ReviewCreatedAt = r.ReviewCreatedAt,
                     ReviewUpdatedAt = r.ReviewUpdatedAt
                 }).ToList();

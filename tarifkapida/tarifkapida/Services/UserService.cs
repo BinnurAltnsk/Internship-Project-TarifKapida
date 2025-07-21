@@ -47,19 +47,31 @@ namespace tarifkapida.Services
         {
             return await _dbContext.USER.FindAsync(userId);
         }
-
-
-        // Login method - returns user or null
         public async Task<Users?> LoginAsync(LoginRequest loginRequest)
         {
             return await _dbContext.USER.FirstOrDefaultAsync(u => 
                 u.Username == loginRequest.Username && 
                 u.Password == loginRequest.Password);
         }
-
         public IActionResult Login(LoginRequest loginRequest)
         {
             throw new NotImplementedException();
+        }
+        public async Task<Users?> GetUserByUsernameAsync(string username)
+        {
+            return await _dbContext.USER.FirstOrDefaultAsync(u => u.Username == username);
+        }
+        public async Task<Users> RegisterAsync(Users user)
+        {
+            var existingUser = await GetUserByUsernameAsync(user.Username);
+            if (existingUser != null)
+            {
+                throw new Exception("Kullanıcı adı zaten mevcut.");
+            }
+
+            _dbContext.USER.Add(user);
+            await _dbContext.SaveChangesAsync();
+            return user;
         }
 
         //public async Task<Users?> GetUserByUsernameAsync(string username)
