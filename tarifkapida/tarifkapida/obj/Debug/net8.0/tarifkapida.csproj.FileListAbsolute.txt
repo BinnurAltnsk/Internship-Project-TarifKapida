@@ -170,4 +170,4 @@ C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\re
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.pdb
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.genruntimeconfig.cache
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\ref\tarifkapida.dll
-C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

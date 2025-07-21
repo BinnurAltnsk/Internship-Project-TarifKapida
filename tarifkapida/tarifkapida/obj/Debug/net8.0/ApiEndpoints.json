@@ -425,6 +425,22 @@
   },
   {
     "ContainingType": "tarifkapida.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "api/User/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "tarifkapida.Models.Requests.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserController",
     "Method": "UpdateUser",
     "RelativePath": "api/User/UpdateUser",
     "HttpMethod": "PUT",

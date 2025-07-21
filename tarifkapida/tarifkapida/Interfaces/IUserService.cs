@@ -12,7 +12,7 @@ namespace tarifkapida.Interfaces
         Task<bool> DeleteUserAsync(int userId);        
         Task<Users?> LoginAsync(LoginRequest loginRequest);
         Task<Users?> GetUserByUsernameAsync(string username);
-        Task<Users> RegisterAsync(Users user);
+        Task<Users> RegisterAsync(RegisterRequest request);
         List<Users> GetUsers();
     }
 }

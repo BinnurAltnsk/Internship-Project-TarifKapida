@@ -61,13 +61,32 @@ namespace tarifkapida.Services
         {
             return await _dbContext.USER.FirstOrDefaultAsync(u => u.Username == username);
         }
-        public async Task<Users> RegisterAsync(Users user)
+
+
+        public async Task<Users> RegisterAsync(RegisterRequest request)
         {
-            var existingUser = await GetUserByUsernameAsync(user.Username);
-            if (existingUser != null)
+            //var existingUser = await GetUserByUsernameAsync(request.Username);
+            //if (existingUser != null)
+            //{
+            //    throw new Exception("Kullanıcı adı zaten mevcut.");
+            //}
+
+            if(string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
             {
-                throw new Exception("Kullanıcı adı zaten mevcut.");
+                throw new ArgumentException("Username, Email, and Password are required.");
             }
+
+            if(request.Password != request.ConfirmPassword)
+            {
+                throw new ArgumentException("Passwords do not match.");
+            }
+
+            var user = new Users
+            {
+                Username = request.Username,
+                Email = request.Email,
+                Password = request.Password // Consider hashing the password before saving
+            };
 
             _dbContext.USER.Add(user);
             await _dbContext.SaveChangesAsync();
