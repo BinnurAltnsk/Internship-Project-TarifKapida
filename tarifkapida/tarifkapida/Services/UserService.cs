@@ -26,7 +26,6 @@ namespace tarifkapida.Services
             await _dbContext.SaveChangesAsync();
             return user;
         }
-
         public async Task<Users> UpdateUserAsync(Users user)
         {
             _dbContext.USER.Update(user);
@@ -61,16 +60,8 @@ namespace tarifkapida.Services
         {
             return await _dbContext.USER.FirstOrDefaultAsync(u => u.Username == username);
         }
-
-
         public async Task<Users> RegisterAsync(RegisterRequest request)
         {
-            //var existingUser = await GetUserByUsernameAsync(request.Username);
-            //if (existingUser != null)
-            //{
-            //    throw new Exception("Kullanıcı adı zaten mevcut.");
-            //}
-
             if(string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
             {
                 throw new ArgumentException("Username, Email, and Password are required.");
@@ -85,59 +76,12 @@ namespace tarifkapida.Services
             {
                 Username = request.Username,
                 Email = request.Email,
-                Password = request.Password // Consider hashing the password before saving
+                Password = request.Password
             };
 
             _dbContext.USER.Add(user);
             await _dbContext.SaveChangesAsync();
             return user;
         }
-
-        //public async Task<Users?> GetUserByUsernameAsync(string username)
-        //{
-        //    return await _dbContext.USER.FirstOrDefaultAsync(u => u.Username == username);
-        //}
-
-        //public async Task<Users?> GetUserByEmailAsync(string email)
-        //{
-        //    return await _dbContext.USER.FirstOrDefaultAsync(u => u.Email == email);
-        //}
-
-        //// Authentication & Validation
-        //public async Task<bool> ValidateUserCredentialsAsync(string username, string password)
-        //{
-        //    var user = await _dbContext.USER.FirstOrDefaultAsync(u => 
-        //        u.Username == username && u.Password == password);
-        //    return user != null;
-        //}
-
-        //public async Task<bool> IsUsernameExistsAsync(string username)
-        //{
-        //    return await _dbContext.USER.AnyAsync(u => u.Username == username);
-        //}
-
-        //public async Task<bool> IsEmailExistsAsync(string email)
-        //{
-        //    return await _dbContext.USER.AnyAsync(u => u.Email == email);
-        //}
-
-        //// User Management
-        //public async Task<List<Users>> GetUsersByRecipeIdAsync(int recipeId)
-        //{
-        //    return await _dbContext.USER
-        //        .Where(u => u.RecipeId == recipeId)
-        //        .ToListAsync();
-        //}
-
-        //public async Task<bool> ChangePasswordAsync(int userId, string newPassword)
-        //{
-        //    var user = await _dbContext.USER.FindAsync(userId);
-        //    if (user == null)
-        //        return false;
-
-        //    user.Password = newPassword;
-        //    await _dbContext.SaveChangesAsync();
-        //    return true;
-        //}
     }
 }

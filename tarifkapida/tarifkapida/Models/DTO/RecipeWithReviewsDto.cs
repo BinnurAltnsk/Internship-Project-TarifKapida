@@ -10,7 +10,6 @@
         public string RecipeImageUrl { get; set; }
         public DateTime? RecipeCreatedAt { get; set; }
         public DateTime? RecipeUpdatedAt { get; set; }
-
         public List<ReviewDto> Reviews { get; set; } = new();
     }
 }

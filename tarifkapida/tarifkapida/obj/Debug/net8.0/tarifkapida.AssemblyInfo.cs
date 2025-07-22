@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tarifkapida")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f24b47b348d7a2698fe81457dfc36704198140aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8027d5acd5cfdd77e247c6c354081905bb6b6a0f")]
 [assembly: System.Reflection.AssemblyProductAttribute("tarifkapida")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tarifkapida")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -18,9 +18,9 @@ namespace tarifkapida.Services
         public List<Review> GetReviews()
         {
             return _dbContext.REVIEW
-        .Include(r => r.User)
-        .Include(r => r.Recipe)
-        .ToList();
+                .Include(r => r.User)
+                .Include(r => r.Recipe)
+                .ToList();
         }
         public List<Review> GetReviewsByRecipeId(int recipeId)
         {

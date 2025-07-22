@@ -2,7 +2,7 @@
 
 namespace tarifkapida.Models.Requests
 {
-    public class ReviewRequest
+    public class ReviewRequests
     {
         public int RecipeId { get; set; }
         public int UserId { get; set; }

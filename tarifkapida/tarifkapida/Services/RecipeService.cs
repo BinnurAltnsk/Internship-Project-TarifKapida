@@ -18,13 +18,9 @@ namespace tarifkapida.Services
 
         public async Task<List<RecipeWithReviewsDto>> GetRecipesAsync()
         {
-            //return await _dbContext.RECIPE
-            //    .Include(r => r.Reviews)
-            //    .ToListAsync();
             var recipes = await _dbContext.RECIPE
                 .Include(r => r.Reviews)
                 .ThenInclude(rv =>rv.User)
-                 // sadece test için
                 .ToListAsync();
 
             return recipes.Select(recipe => new RecipeWithReviewsDto
@@ -53,7 +49,7 @@ namespace tarifkapida.Services
         public async Task<List<Recipe>> GetRecipesTestAsync()
         {
             var recipes = await _dbContext.RECIPE
-                .Include(rv => rv.User)  // User'ı da include et
+                .Include(rv => rv.User)
                 .Include(r => r.Reviews)
                 .ThenInclude(rv => rv.User)
                 .ToListAsync();
@@ -132,17 +128,5 @@ namespace tarifkapida.Services
             await _dbContext.SaveChangesAsync();
             return true;
         }
-
-
-
-        //public Task<List<RecipeWithReviewsDto>> GetRecipesWithReviewsAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<RecipeWithReviewsDto?> GetRecipeWithReviewsByIdAsync(int recipeId)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

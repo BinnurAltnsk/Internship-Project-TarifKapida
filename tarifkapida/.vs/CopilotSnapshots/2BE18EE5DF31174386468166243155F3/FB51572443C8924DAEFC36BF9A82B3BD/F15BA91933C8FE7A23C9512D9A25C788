@@ -1,0 +1,119 @@
+﻿using Microsoft.EntityFrameworkCore;
+using tarifkapida.Data;
+using tarifkapida.Interfaces;
+using tarifkapida.Models;
+
+namespace tarifkapida.Services
+{
+    public class FavoriteService : IFavoriteService
+    {
+        private readonly AppDbContext _dbContext;
+
+        public FavoriteService(AppDbContext context)
+        {
+            _dbContext = context;
+        }
+        public async Task<bool> AddToFavoritesAsync(int userId, int recipeId)
+        {
+            try
+            {
+                var user = await _dbContext.USER.FindAsync(userId);
+                var recipe = await _dbContext.RECIPE.FindAsync(recipeId);
+
+                if (user == null || recipe == null)
+                    return false;
+
+                if (user.FavoriteRecipeId?.Contains(recipeId) == true)
+                    return false;
+
+                if (user.FavoriteRecipeId == null)
+                    user.FavoriteRecipeId = new List<int>();
+                user.FavoriteRecipeId.Add(recipeId);
+                recipe.FavoriteCount++;
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> RemoveFromFavoritesAsync(int userId, int recipeId)
+        {
+            try
+            {
+                var user = await _dbContext.USER.FindAsync(userId);
+                var recipe = await _dbContext.RECIPE.FindAsync(recipeId);
+
+                if (user == null || recipe == null)
+                    return false;
+
+                if (user.FavoriteRecipeId?.Contains(recipeId) != true)
+                    return false;
+
+                user.FavoriteRecipeId.Remove(recipeId);
+                recipe.FavoriteCount--;
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public async Task<List<Recipe>> GetUserFavoritesAsync(int userId)
+        {
+            try
+            {
+                var user = await _dbContext.USER
+                    .Include(u => u.Recipes)
+                    .FirstOrDefaultAsync(u => u.UserId == userId);
+
+                if (user == null)
+                    return new List<Recipe>();
+
+                var favoriteRecipes = await _dbContext.RECIPE
+                    .Where(r => user.FavoriteRecipeId.Contains(r.RecipeId))
+                    .Include(r => r.User)
+                    .Include(r => r.Reviews)
+                    .ToListAsync();
+
+                return favoriteRecipes;
+            }
+            catch
+            {
+                return new List<Recipe>();
+            }
+        }
+
+        public async Task<bool> IsFavoriteAsync(int userId, int recipeId)
+        {
+            try
+            {
+                var user = await _dbContext.USER.FindAsync(userId);
+                return user?.FavoriteRecipeId?.Contains(recipeId) ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<int> GetFavoriteCountAsync(int recipeId)
+        {
+            try
+            {
+                var recipe = await _dbContext.RECIPE.FindAsync(recipeId);
+                return recipe?.FavoriteCount ?? 0;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+    }
+} 

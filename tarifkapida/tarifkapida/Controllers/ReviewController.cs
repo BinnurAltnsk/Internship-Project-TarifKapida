@@ -32,6 +32,7 @@ namespace tarifkapida.Controllers
             }
             return Ok(review);
         }
+
         [HttpPost("CreateReview")]
         public async Task<ActionResult<Review>> CreateReview([FromBody] Review review)
         {
@@ -42,6 +43,7 @@ namespace tarifkapida.Controllers
             var createdReview = await reviewService.CreateReviewAsync(review);
             return CreatedAtAction(nameof(GetReviewById), new { reviewId = createdReview.ReviewId }, createdReview);
         }
+
         [HttpPut("UpdateReview")]
         public async Task<ActionResult<Review>> UpdateReview([FromBody] Review review)
         {
@@ -52,6 +54,7 @@ namespace tarifkapida.Controllers
             var updatedReview = await reviewService.UpdateReviewAsync(review);
             return Ok(updatedReview);
         }
+
         [HttpPost("DeleteReview/{reviewId}")]
         public async Task<IActionResult> DeleteReview([FromQuery] int reviewId)
         {

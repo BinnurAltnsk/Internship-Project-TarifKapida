@@ -16,6 +16,7 @@ namespace tarifkapida.Controllers
         {
             this.recipeService = recipeService;
         }
+
         [HttpGet("GetRecipes")]
         public async Task<ActionResult<List<RecipeWithReviewsDto>>> GetRecipes()
         {
@@ -30,13 +31,6 @@ namespace tarifkapida.Controllers
             return Ok(recipes);
         }
 
-        //[HttpGet("GetRecipesWithReviews")]
-        //public async Task<ActionResult<List<RecipeWithReviewsDto>>> GetRecipesWithReviews()
-        //{
-        //    var recipes = await recipeService.GetRecipesWithReviewsAsync();
-        //    return Ok(recipes);
-        //}
-
         [HttpGet("GetRecipeById/{recipeId}")]
         public async Task<ActionResult<Recipe?>> GetRecipeById(int recipeId)
         {
@@ -48,16 +42,6 @@ namespace tarifkapida.Controllers
             return Ok(recipe);
         }
         
-        //[HttpGet("GetRecipeWithReviewsById/{recipeId}")]
-        //public async Task<ActionResult<RecipeWithReviewsDto?>> GetRecipeWithReviewsById(int recipeId)
-        //{
-        //    var recipe = await recipeService.GetRecipeWithReviewsByIdAsync(recipeId);
-        //    if (recipe == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(recipe);
-        //}
         [HttpPost("CreateRecipe")]
         public async Task<ActionResult<Recipe>> CreateRecipe([FromBody] Recipe recipe)
         {
@@ -68,6 +52,7 @@ namespace tarifkapida.Controllers
             var createdRecipe = await recipeService.CreateRecipeAsync(recipe);
             return CreatedAtAction(nameof(GetRecipeById), new { recipeId = createdRecipe.RecipeId }, createdRecipe);
         }
+
         [HttpPut("UpdateRecipe")]
         public async Task<ActionResult<Recipe?>> UpdateRecipe([FromBody] Recipe recipe)
         {
@@ -82,6 +67,7 @@ namespace tarifkapida.Controllers
             }
             return Ok(updatedRecipe);
         }
+
         [HttpPost("DeleteRecipe/{recipeId}")]
         public async Task<IActionResult> DeleteRecipe([FromQuery] int recipeId)
         {
@@ -92,12 +78,14 @@ namespace tarifkapida.Controllers
             }
             return NoContent();
         }
+
         [HttpGet("SearchRecipes")]
         public async Task<ActionResult<List<Recipe>>> SearchRecipes(string searchTerm)
         {
             var recipes = await recipeService.SearchRecipesAsync(searchTerm);
             return Ok(recipes);
         }
+
         [HttpGet("GetRecipesByUserId/{userId}")]
         public async Task<ActionResult<List<Recipe>>> GetRecipesByUserId(int userId)
         {

@@ -66,6 +66,7 @@ namespace tarifkapida.Controllers
             var updatedUser = await userService.UpdateUserAsync(user);
             return Ok(updatedUser);
         }
+
         [HttpPost("DeleteUser")]
         public async Task<IActionResult> DeleteUser([FromQuery] int userId)
         {
@@ -80,6 +81,7 @@ namespace tarifkapida.Controllers
             }
             return NoContent();
         }
+
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {

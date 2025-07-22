@@ -40,6 +40,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IRecipeService, RecipeService>();
 builder.Services.AddTransient<IReviewService, ReviewService>();
+builder.Services.AddTransient<IFavoriteService, FavoriteService>();
 
 var app = builder.Build();
 

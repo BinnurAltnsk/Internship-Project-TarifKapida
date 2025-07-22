@@ -42,6 +42,6 @@ namespace tarifkapida.Models.Requests
         public int Rating { get; set; }
         public DateTime ReviewCreatedAt { get; set; }
         public DateTime ReviewUpdatedAt { get; set; }
-        public string? Username { get; set; } // User'dan sadece username
+        public string? Username { get; set; }
     }
 }
