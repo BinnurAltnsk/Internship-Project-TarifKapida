@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\yeni klas\u00F6r\\tarifkapida\\tarifkapida\\controllers\\favoritecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\controllers\\favoritecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\yeni klas\u00F6r\\tarifkapida\\tarifkapida\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -37,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\yeni klas\u00F6r\\tarifkapida\\tarifkapida\\controllers\\recipecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\controllers\\recipecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\yeni klas\u00F6r\\tarifkapida\\tarifkapida\\controllers\\favoritecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\controllers\\favoritecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\yeni klas\u00F6r\\tarifkapida\\tarifkapida\\models\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -130,7 +130,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 261,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -182,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Favorite.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Models\\Favorite.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Models\\Favorite.cs",
@@ -190,8 +190,7 @@
               "RelativeToolTip": "tarifkapida\\Models\\Favorite.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T08:01:50.509Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T08:01:50.509Z"
             },
             {
               "$type": "Document",
@@ -219,19 +218,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "FavoriteController.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Controllers\\FavoriteController.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Controllers\\FavoriteController.cs",
               "ToolTip": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Controllers\\FavoriteController.cs",
               "RelativeToolTip": "tarifkapida\\Controllers\\FavoriteController.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAAAHsAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAcwHsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T07:04:57.137Z"
+              "WhenOpened": "2025-07-22T07:04:57.137Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "RecipeController.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Controllers\\RecipeController.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Controllers\\RecipeController.cs",
@@ -243,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ReviewController.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Controllers\\ReviewController.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Controllers\\ReviewController.cs",
@@ -251,8 +251,7 @@
               "RelativeToolTip": "tarifkapida\\Controllers\\ReviewController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAADgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T07:03:57.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T07:03:57.749Z"
             },
             {
               "$type": "Document",
@@ -292,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ReviewService.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Services\\ReviewService.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Services\\ReviewService.cs",
@@ -300,12 +299,11 @@
               "RelativeToolTip": "tarifkapida\\Services\\ReviewService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T06:44:56.775Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T06:44:56.775Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "RecipeService.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Services\\RecipeService.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Services\\RecipeService.cs",
@@ -313,12 +311,11 @@
               "RelativeToolTip": "tarifkapida\\Services\\RecipeService.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAgwHoAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T06:43:49.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T06:43:49.685Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Review.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Models\\Review.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Models\\Review.cs",
@@ -326,8 +323,7 @@
               "RelativeToolTip": "tarifkapida\\Models\\Review.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T06:42:04.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T06:42:04.249Z"
             },
             {
               "$type": "Document",
@@ -343,7 +339,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ReviewRequests.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Models\\Requests\\ReviewRequests.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Models\\Requests\\ReviewRequests.cs",
@@ -351,8 +347,7 @@
               "RelativeToolTip": "tarifkapida\\Models\\Requests\\ReviewRequests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T06:41:23.556Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T06:41:23.556Z"
             },
             {
               "$type": "Document",
@@ -368,7 +363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ReviewDto.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Models\\DTO\\ReviewDto.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Models\\DTO\\ReviewDto.cs",
@@ -376,8 +371,7 @@
               "RelativeToolTip": "tarifkapida\\Models\\DTO\\ReviewDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T06:39:41.329Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T06:39:41.329Z"
             },
             {
               "$type": "Document",
@@ -465,7 +459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "IFavoriteService.cs",
               "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Yeni klas\u00F6r\\tarifkapida\\tarifkapida\\Interfaces\\IFavoriteService.cs",
               "RelativeDocumentMoniker": "tarifkapida\\Interfaces\\IFavoriteService.cs",
