@@ -15,11 +15,12 @@ namespace tarifkapida.Models
         public string RecipeImageUrl { get; set; }
         public int? UserId { get; set; }
         public int? CategoryId { get; set; }
-        public Category? Category { get; set; }
         public DateTime? RecipeCreatedAt { get; set; } = DateTime.Now;
         public DateTime? RecipeUpdatedAt { get; set; } = DateTime.Now;
         public Users? User { get; set; }
+        public Category? Category { get; set; }
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
+        public ICollection<Category> Categorys { get; set; } = new List<Category>();
         public int FavoriteCount { get; set; } = 0;
     }
 }

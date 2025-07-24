@@ -37,12 +37,18 @@ namespace tarifkapida.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ParentCategoryId")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecipeId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CategoryId");
 
-                    b.HasIndex("ParentCategoryId");
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("CATEGORY");
                 });
@@ -225,10 +231,11 @@ namespace tarifkapida.Migrations
 
             modelBuilder.Entity("tarifkapida.Models.Category", b =>
                 {
-                    b.HasOne("tarifkapida.Models.Category", null)
-                        .WithMany()
-                        .HasForeignKey("ParentCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                    b.HasOne("tarifkapida.Models.Recipe", null)
+                        .WithMany("Categorys")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("tarifkapida.Models.Favorite", b =>
@@ -300,6 +307,8 @@ namespace tarifkapida.Migrations
 
             modelBuilder.Entity("tarifkapida.Models.Recipe", b =>
                 {
+                    b.Navigation("Categorys");
+
                     b.Navigation("Reviews");
                 });
 

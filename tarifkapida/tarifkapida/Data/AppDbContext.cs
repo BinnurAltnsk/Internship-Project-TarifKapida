@@ -46,13 +46,6 @@ namespace tarifkapida.Data
                 .HasForeignKey(r => r.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict); // Kategori silinirse tarifler silinmesin
 
-            // Category - ParentCategory ilişkisi (opsiyonel)
-            modelBuilder.Entity<Category>()
-                .HasOne<Category>()
-                .WithMany()
-                .HasForeignKey(c => c.ParentCategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             // Users - UserProfile birebir ilişkisi
             modelBuilder.Entity<Users>()
                 .HasOne(u => u.UserProfile)

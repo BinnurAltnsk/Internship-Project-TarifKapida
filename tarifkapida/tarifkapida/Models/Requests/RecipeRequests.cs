@@ -31,6 +31,8 @@ namespace tarifkapida.Models.Requests
         public List<ReviewDto>? Reviews { get; set; }
         public int ReviewCount { get; set; }
         public double AverageRating { get; set; }
+        public string CategoryName { get; internal set; }
+        public int? CategoryId { get; internal set; }
     }
 
     public class ReviewDto

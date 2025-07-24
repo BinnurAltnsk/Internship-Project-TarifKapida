@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\x_user\\Desktop\\Yeni klasör\\tarifkapida\\tarifkapida\\tarifkapida.csproj": {}
+    "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\tarifkapida.csproj": {}
   },
   "projects": {
-    "C:\\Users\\x_user\\Desktop\\Yeni klasör\\tarifkapida\\tarifkapida\\tarifkapida.csproj": {
+    "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\tarifkapida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\x_user\\Desktop\\Yeni klasör\\tarifkapida\\tarifkapida\\tarifkapida.csproj",
+        "projectUniqueName": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\tarifkapida.csproj",
         "projectName": "tarifkapida",
-        "projectPath": "C:\\Users\\x_user\\Desktop\\Yeni klasör\\tarifkapida\\tarifkapida\\tarifkapida.csproj",
+        "projectPath": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\tarifkapida.csproj",
         "packagesPath": "C:\\Users\\x_user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\x_user\\Desktop\\Yeni klasör\\tarifkapida\\tarifkapida\\obj\\",
+        "outputPath": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

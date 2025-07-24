@@ -53,13 +53,6 @@ namespace tarifkapida.Services
             await _dbContext.SaveChangesAsync();
             return true;
         }
-        public async Task<List<Category>> GetCategoriesByParentIdAsync(int parentCategoryId)
-        {
-            return await _dbContext.CATEGORY
-                .Where(c => c.ParentCategoryId == parentCategoryId)
-                .ToListAsync();
-
-        }
         public async Task<List<Category>> SearchCategoriesAsync(string searchTerm)
         {
             return await _dbContext.CATEGORY

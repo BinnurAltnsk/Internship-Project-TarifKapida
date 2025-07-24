@@ -65,5 +65,16 @@ namespace tarifkapida.Controllers
             }
             return Ok(isDeleted);
         }
+        [HttpGet("GetAllCategories")]
+        public async Task<ActionResult<List<Category>>> GetAllCategories()
+        {
+            var categories = await categoryService.GetCategoriesAsync();
+            if (categories == null || categories.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(categories);
+        }
+
     }
 }

@@ -132,21 +132,19 @@ namespace tarifkapida.Services
             return true;
         }
 
-        public async Task<List<Recipe>> GetRecipesByCategoryIdAsync(int categoryId)
+        public Task<List<Recipe>> GetRecipesByCategoryIdAsync(int categoryId)
         {
-            return await _dbContext.RECIPE
-                .Include(r => r.Category)
-                .Include(r => r.User)
+            return _dbContext.RECIPE
                 .Where(r => r.CategoryId == categoryId)
+                .Include(r => r.Reviews)
                 .ToListAsync();
         }
 
-        public async Task<List<Recipe>> GetRecipesByCategoryNameAsync(string categoryName)
+        public Task<List<Recipe>> GetRecipesByCategoryNameAsync(string categoryName)
         {
-            return await _dbContext.RECIPE
-                .Include(r => r.Category)
-                .Include(r => r.User)
-                .Where(r => r.Category.CategoryName.Contains(categoryName))
+            return _dbContext.RECIPE
+                .Where(r => r.Category.CategoryName == categoryName)
+                .Include(r => r.Reviews)
                 .ToListAsync();
         }
     }

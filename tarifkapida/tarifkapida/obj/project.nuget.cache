@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mn/3/AyCKHI=",
+  "dgSpecHash": "6mU3eMrAU3Q=",
   "success": true,
-  "projectFilePath": "C:\\Users\\x_user\\Desktop\\Yeni klasör\\tarifkapida\\tarifkapida\\tarifkapida.csproj",
+  "projectFilePath": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\tarifkapida.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\x_user\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\x_user\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

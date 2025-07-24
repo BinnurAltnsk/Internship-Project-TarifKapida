@@ -9,7 +9,6 @@ namespace tarifkapida.Interfaces
         Task<Category> CreateCategoryAsync(Category category);
         Task<Category?> UpdateCategoryAsync(Category category);
         Task<bool> DeleteCategoryAsync(int categoryId);
-        Task<List<Category>> GetCategoriesByParentIdAsync(int parentCategoryId);
         
     }
 }
