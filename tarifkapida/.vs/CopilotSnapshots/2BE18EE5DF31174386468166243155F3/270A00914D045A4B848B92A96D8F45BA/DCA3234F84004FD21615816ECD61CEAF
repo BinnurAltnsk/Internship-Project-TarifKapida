@@ -1,0 +1,22 @@
+﻿using tarifkapida.Data;
+using tarifkapida.Interfaces;
+using tarifkapida.Models;
+using tarifkapida.Models.Requests;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+
+namespace tarifkapida.Services
+{
+    public class UserProfileService : IUserProfileService
+    {
+        private readonly AppDbContext _dbContext;
+
+        public UserProfile(AppDbContext dbContext)
+        {
+            _dbContext = context;
+        }
+         
+
+
+    }
+}

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using tarifkapida.Interfaces;
 using tarifkapida.Models;
-using tarifkapida.Models.Requests;
-using tarifkapida.Services;
 
 namespace tarifkapida.Controllers
 {
@@ -11,7 +9,7 @@ namespace tarifkapida.Controllers
 
     public class CategoryController : ControllerBase
     {
-        readonly ICategoryService categoryService;
+        private readonly ICategoryService categoryService;
         public CategoryController(ICategoryService categoryService)
         {
             this.categoryService = categoryService;

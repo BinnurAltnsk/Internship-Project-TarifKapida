@@ -1,18 +1,16 @@
-﻿using tarifkapida.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using tarifkapida.Data;
 using tarifkapida.Interfaces;
 using tarifkapida.Models;
-using tarifkapida.Models.Requests;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 
 namespace tarifkapida.Services
 {
     public class CategoryService : ICategoryService
     {
         private readonly AppDbContext _dbContext;
-        public CategoryService(AppDbContext context)
+        public CategoryService(AppDbContext dbContext)
         {
-            _dbContext = context;
+            _dbContext = dbContext;
         }
         public async Task<List<Category>> GetCategoriesAsync()
         {
@@ -39,7 +37,7 @@ namespace tarifkapida.Services
             {
                 return null;
             }
-            existingCategory.CategoryDescription = category.CategoryDescription;
+            existingCategory.CategoryName = category.CategoryName;
             existingCategory.CategoryDescription = category.CategoryDescription;
             await _dbContext.SaveChangesAsync();
             return existingCategory;
@@ -65,7 +63,7 @@ namespace tarifkapida.Services
         public async Task<List<Category>> SearchCategoriesAsync(string searchTerm)
         {
             return await _dbContext.CATEGORY
-                .Where(c => c.CategoryName.Contains(searchTerm) || c.CategoryDescription.Contains(searchTerm))
+                .Where(c => c.CategoryName.Contains(searchTerm) || (c.CategoryDescription != null && c.CategoryDescription.Contains(searchTerm)))
                 .ToListAsync();
         }
     }

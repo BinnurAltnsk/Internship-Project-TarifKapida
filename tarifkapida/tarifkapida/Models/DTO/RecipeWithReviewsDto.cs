@@ -1,4 +1,6 @@
-﻿namespace tarifkapida.Models.DTO
+﻿using tarifkapida.Models;
+
+namespace tarifkapida.Models.DTO
 {
     public class RecipeWithReviewsDto
     {
@@ -10,6 +12,8 @@
         public string RecipeImageUrl { get; set; }
         public DateTime? RecipeCreatedAt { get; set; }
         public DateTime? RecipeUpdatedAt { get; set; }
+        public int? CategoryId { get; set; }
+        public string? CategoryName { get; set; }
         public List<ReviewDto> Reviews { get; set; } = new();
     }
 }

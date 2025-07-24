@@ -1,2 +1,0 @@
-wwwroot\images\magnolya.jpg
-wwwroot\images\sarma.jpg

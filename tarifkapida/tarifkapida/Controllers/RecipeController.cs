@@ -92,5 +92,19 @@ namespace tarifkapida.Controllers
             var recipes = await recipeService.GetRecipesByUserIdAsync(userId);
             return Ok(recipes);
         }
+
+        [HttpGet("GetRecipesByCategoryId/{categoryId}")]
+        public async Task<ActionResult<List<Recipe>>> GetRecipesByCategoryId(int categoryId)
+        {
+            var recipes = await recipeService.GetRecipesByCategoryIdAsync(categoryId);
+            return Ok(recipes);
+        }
+
+        [HttpGet("GetRecipesByCategoryName")]
+        public async Task<ActionResult<List<Recipe>>> GetRecipesByCategoryName([FromQuery] string categoryName)
+        {
+            var recipes = await recipeService.GetRecipesByCategoryNameAsync(categoryName);
+            return Ok(recipes);
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace tarifkapida.Services
             var recipes = await _dbContext.RECIPE
                 .Include(r => r.Reviews)
                 .ThenInclude(rv =>rv.User)
+                .Include(r => r.Category) // Kategori bilgisini de dahil et
                 .ToListAsync();
 
             return recipes.Select(recipe => new RecipeWithReviewsDto
@@ -33,6 +34,8 @@ namespace tarifkapida.Services
                 RecipeImageUrl = recipe.RecipeImageUrl,
                 RecipeCreatedAt = recipe.RecipeCreatedAt,
                 RecipeUpdatedAt = recipe.RecipeUpdatedAt,
+                CategoryName = recipe.Category?.CategoryName ?? "Kategorisiz", // Kategori adını ekle
+                CategoryId = recipe.CategoryId,
                 Reviews = recipe.Reviews?.Select(review => new ReviewDto
                 {
                     ReviewId = review.ReviewId,
@@ -127,6 +130,24 @@ namespace tarifkapida.Services
             recipe.RecipeUpdatedAt = DateTime.Now;
             await _dbContext.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<List<Recipe>> GetRecipesByCategoryIdAsync(int categoryId)
+        {
+            return await _dbContext.RECIPE
+                .Include(r => r.Category)
+                .Include(r => r.User)
+                .Where(r => r.CategoryId == categoryId)
+                .ToListAsync();
+        }
+
+        public async Task<List<Recipe>> GetRecipesByCategoryNameAsync(string categoryName)
+        {
+            return await _dbContext.RECIPE
+                .Include(r => r.Category)
+                .Include(r => r.User)
+                .Where(r => r.Category.CategoryName.Contains(categoryName))
+                .ToListAsync();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using tarifkapida.Models;
-using tarifkapida.Models.Requests;
+﻿using tarifkapida.Models;
 
 namespace tarifkapida.Interfaces
 {

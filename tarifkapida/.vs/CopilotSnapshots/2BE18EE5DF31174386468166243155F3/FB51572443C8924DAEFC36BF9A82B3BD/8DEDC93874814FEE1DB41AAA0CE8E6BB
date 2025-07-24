@@ -1,0 +1,22 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using tarifkapida.Interfaces;
+using tarifkapida.Models;
+using tarifkapida.Models.Requests;
+using tarifkapida.Services;
+
+namespace tarifkapida.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserProfileController : ControllerBase
+    {
+        readonly IUserProfileService userProfileService;
+
+        public UserProfileController(IUserProfileService userProfileService)
+        {
+            this.userProfileService = userProfileService;
+        }
+
+
+    }
+}

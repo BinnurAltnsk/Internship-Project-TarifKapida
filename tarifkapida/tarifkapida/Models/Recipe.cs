@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace tarifkapida.Models
 {
@@ -15,8 +14,8 @@ namespace tarifkapida.Models
         public string RecipeInstructions { get; set; }
         public string RecipeImageUrl { get; set; }
         public int? UserId { get; set; }
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
         public DateTime? RecipeCreatedAt { get; set; } = DateTime.Now;
         public DateTime? RecipeUpdatedAt { get; set; } = DateTime.Now;
         public Users? User { get; set; }

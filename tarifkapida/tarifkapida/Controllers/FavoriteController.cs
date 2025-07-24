@@ -8,11 +8,11 @@ namespace tarifkapida.Controllers
     [ApiController]
     public class FavoriteController : ControllerBase
     {
-        private readonly IFavoriteService _favoriteService;
+        private readonly IFavoriteService favoriteService;
 
         public FavoriteController(IFavoriteService favoriteService)
         {
-            _favoriteService = favoriteService;
+            this.favoriteService = favoriteService;
         }
 
         [HttpPost("AddToFavorites")]
@@ -23,7 +23,7 @@ namespace tarifkapida.Controllers
                 return BadRequest("Geçersiz kullanıcı ID veya tarif ID");
             }
 
-            var result = await _favoriteService.AddToFavoritesAsync(userId, recipeId);
+            var result = await favoriteService.AddToFavoritesAsync(userId, recipeId);
             
             if (result)
             {
@@ -43,7 +43,7 @@ namespace tarifkapida.Controllers
                 return BadRequest("Geçersiz kullanıcı ID veya tarif ID");
             }
 
-            var result = await _favoriteService.RemoveFromFavoritesAsync(userId, recipeId);
+            var result = await favoriteService.RemoveFromFavoritesAsync(userId, recipeId);
             
             if (result)
             {
@@ -63,7 +63,7 @@ namespace tarifkapida.Controllers
                 return BadRequest("Geçersiz kullanıcı ID");
             }
 
-            var favorites = await _favoriteService.GetUserFavoritesAsync(userId);
+            var favorites = await favoriteService.GetUserFavoritesAsync(userId);
             return Ok(favorites);
         }
 
@@ -75,7 +75,7 @@ namespace tarifkapida.Controllers
                 return BadRequest("Geçersiz kullanıcı ID veya tarif ID");
             }
 
-            var isFavorite = await _favoriteService.IsFavoriteAsync(userId, recipeId);
+            var isFavorite = await favoriteService.IsFavoriteAsync(userId, recipeId);
             return Ok(new { isFavorite = isFavorite });
         }
 
@@ -87,11 +87,11 @@ namespace tarifkapida.Controllers
                 return BadRequest("Geçersiz kullanıcı ID veya tarif ID");
             }
 
-            var isFavorite = await _favoriteService.IsFavoriteAsync(userId, recipeId);
+            var isFavorite = await favoriteService.IsFavoriteAsync(userId, recipeId);
             
             if (isFavorite)
             {
-                var removeResult = await _favoriteService.RemoveFromFavoritesAsync(userId, recipeId);
+                var removeResult = await favoriteService.RemoveFromFavoritesAsync(userId, recipeId);
                 if (removeResult)
                 {
                     return Ok(new { message = "Tarif favorilerden çıkarıldı", isFavorite = false });
@@ -99,7 +99,7 @@ namespace tarifkapida.Controllers
             }
             else
             {
-                var addResult = await _favoriteService.AddToFavoritesAsync(userId, recipeId);
+                var addResult = await favoriteService.AddToFavoritesAsync(userId, recipeId);
                 if (addResult)
                 {
                     return Ok(new { message = "Tarif favorilere eklendi", isFavorite = true });
@@ -117,7 +117,7 @@ namespace tarifkapida.Controllers
                 return BadRequest("Geçersiz kullanıcı ID veya arama terimi");
             }
 
-            var filteredFavorites = await _favoriteService.SearchUserFavoritesAsync(userId, searchTerm);
+            var filteredFavorites = await favoriteService.SearchUserFavoritesAsync(userId, searchTerm);
             return Ok(filteredFavorites);
         }
     }

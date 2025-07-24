@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
 namespace tarifkapida.Models
@@ -12,6 +11,5 @@ namespace tarifkapida.Models
         public string? CategoryDescription { get; set; }
         public int? ParentCategoryId { get; set; }
         public ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();
-
     }
 }

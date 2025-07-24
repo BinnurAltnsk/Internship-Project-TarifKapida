@@ -1,0 +1,17 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace tarifkapida.Models
+{
+    public class UserProfile
+    {
+        [Key]
+        public int UserProfileId { get; set; }
+        public int UserId { get; set; }
+        public Users User { get; set; }
+        public string? ProfileImageUrl { get; set; }
+        public string? Bio { get; set; }
+        public string? Instagram { get; set; }
+        public string? Facebook { get; set; }
+        public string? Twitter { get; set; }
+    }
+}

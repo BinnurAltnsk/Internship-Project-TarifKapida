@@ -85,7 +85,7 @@ namespace tarifkapida.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecipeId"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("FavoriteCount")
@@ -165,6 +165,40 @@ namespace tarifkapida.Migrations
                     b.ToTable("REVIEW");
                 });
 
+            modelBuilder.Entity("tarifkapida.Models.UserProfile", b =>
+                {
+                    b.Property<int>("UserProfileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserProfileId"));
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Facebook")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Instagram")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Twitter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserProfileId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("USERPROFILE");
+                });
+
             modelBuilder.Entity("tarifkapida.Models.Users", b =>
                 {
                     b.Property<int>("UserId")
@@ -217,8 +251,7 @@ namespace tarifkapida.Migrations
                     b.HasOne("tarifkapida.Models.Category", "Category")
                         .WithMany("Recipes")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("tarifkapida.Models.Users", "User")
                         .WithMany("Recipes")
@@ -249,6 +282,17 @@ namespace tarifkapida.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("tarifkapida.Models.UserProfile", b =>
+                {
+                    b.HasOne("tarifkapida.Models.Users", "User")
+                        .WithOne("UserProfile")
+                        .HasForeignKey("tarifkapida.Models.UserProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("tarifkapida.Models.Category", b =>
                 {
                     b.Navigation("Recipes");
@@ -264,6 +308,8 @@ namespace tarifkapida.Migrations
                     b.Navigation("Recipes");
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("UserProfile");
                 });
 #pragma warning restore 612, 618
         }

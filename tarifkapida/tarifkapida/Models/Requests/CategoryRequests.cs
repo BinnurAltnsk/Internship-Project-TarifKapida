@@ -10,7 +10,7 @@ namespace tarifkapida.Models.Requests
         [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters.")]
         public string? CategoryDescription { get; set; }
         [Required]
-        public int ParentCategoryId { get; set; } // Assuming this is a foreign key to another category
+        public int ParentCategoryId { get; set; }
         
     }
 }
