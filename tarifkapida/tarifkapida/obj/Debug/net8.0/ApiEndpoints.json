@@ -53,6 +53,26 @@
   },
   {
     "ContainingType": "tarifkapida.Controllers.CategoryController",
+    "Method": "GetAllCategories",
+    "RelativePath": "api/Category/GetAllCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tarifkapida.Models.Category, tarifkapida, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.CategoryController",
     "Method": "GetCategories",
     "RelativePath": "api/Category/GetCategories",
     "HttpMethod": "GET",
@@ -359,6 +379,58 @@
   },
   {
     "ContainingType": "tarifkapida.Controllers.RecipeController",
+    "Method": "GetRecipesByCategoryId",
+    "RelativePath": "api/Recipe/GetRecipesByCategoryId/{categoryId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tarifkapida.Models.Recipe, tarifkapida, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.RecipeController",
+    "Method": "GetRecipesByCategoryName",
+    "RelativePath": "api/Recipe/GetRecipesByCategoryName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tarifkapida.Models.Recipe, tarifkapida, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.RecipeController",
     "Method": "GetRecipesByUserId",
     "RelativePath": "api/Recipe/GetRecipesByUserId/{userId}",
     "HttpMethod": "GET",
@@ -550,6 +622,53 @@
   },
   {
     "ContainingType": "tarifkapida.Controllers.ReviewController",
+    "Method": "GetPagedReviews",
+    "RelativePath": "api/Review/PagedReviews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.ReviewController",
+    "Method": "GetPagedReviewsByRecipe",
+    "RelativePath": "api/Review/PagedReviewsByRecipe",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "recipeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.ReviewController",
     "Method": "UpdateReview",
     "RelativePath": "api/Review/UpdateReview",
     "HttpMethod": "PUT",
@@ -721,6 +840,58 @@
     "ReturnTypes": [
       {
         "Type": "tarifkapida.Models.Users",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "CreateOrUpdateUserProfile",
+    "RelativePath": "api/UserProfile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "tarifkapida.Models.Requests.UserProfileRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tarifkapida.Models.Requests.UserProfileDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "GetUserProfile",
+    "RelativePath": "api/UserProfile/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tarifkapida.Models.Requests.UserProfileDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

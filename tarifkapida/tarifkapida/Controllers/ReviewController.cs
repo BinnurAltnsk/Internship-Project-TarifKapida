@@ -66,5 +66,19 @@ namespace tarifkapida.Controllers
             return NoContent();
         }
 
+        [HttpGet("PagedReviews")]
+        public async Task<IActionResult> GetPagedReviews([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var pagedResult = await reviewService.GetPagedReviewsAsync(page, pageSize);
+
+            return Ok(pagedResult);
+        }
+        [HttpGet("PagedReviewsByRecipe")]
+        public async Task<IActionResult> GetPagedReviewsByRecipe([FromQuery] int recipeId, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var result = await reviewService.GetPagedReviewsByRecipeAsync(recipeId, page, pageSize);
+            return Ok(result);
+        }
+
     }
 }

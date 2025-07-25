@@ -70,5 +70,49 @@ namespace tarifkapida.Services
                     ReviewUpdatedAt = r.ReviewUpdatedAt
                 }).ToList();
         }
+        public async Task<object> GetPagedReviewsAsync(int page, int pageSize)
+        {
+            var query = _dbContext.REVIEW.OrderByDescending(r => r.ReviewCreatedAt);
+
+            var totalCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            var reviews = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new
+            {
+                currentPage = page,
+                pageSize = pageSize,
+                totalCount = totalCount,
+                totalPages = totalPages,
+                data = reviews
+            };
+        }
+        public async Task<object> GetPagedReviewsByRecipeAsync(int recipeId, int page, int pageSize)
+        {
+            var query = _dbContext.REVIEW
+                .Where(r => r.RecipeId == recipeId)
+                .OrderByDescending(r => r.ReviewCreatedAt);
+
+            var totalCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+            var reviews = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new
+            {
+                currentPage = page,
+                pageSize = pageSize,
+                totalCount = totalCount,
+                totalPages = totalPages,
+                data = reviews
+            };
+        }
     }
 }
