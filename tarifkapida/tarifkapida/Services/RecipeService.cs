@@ -31,7 +31,7 @@ namespace tarifkapida.Services
                 RecipeDescription = recipe.RecipeDescription,
                 RecipeIngredients = recipe.RecipeIngredients,
                 RecipeInstructions = recipe.RecipeInstructions,
-                RecipeImageUrl = recipe.RecipeImageUrl,
+                RecipeImageUrl = ConvertImagePathToUrl(recipe.RecipeImageUrl),
                 RecipeCreatedAt = recipe.RecipeCreatedAt,
                 RecipeUpdatedAt = recipe.RecipeUpdatedAt,
                 CategoryName = recipe.Category?.CategoryName ?? "Kategorisiz", // Kategori adını ekle
@@ -57,14 +57,27 @@ namespace tarifkapida.Services
                 .ThenInclude(rv => rv.User)
                 .ToListAsync();
 
+            // Resim URL'lerini dönüştür
+            foreach (var recipe in recipes)
+            {
+                recipe.RecipeImageUrl = ConvertImagePathToUrl(recipe.RecipeImageUrl);
+            }
+
             return recipes;
         }
 
         public async Task<Recipe?> GetRecipeByIdAsync(int recipeId)
         {
-            return await _dbContext.RECIPE
+            var recipe = await _dbContext.RECIPE
                 .Include(r => r.Reviews)
                 .FirstOrDefaultAsync(r => r.RecipeId == recipeId);
+
+            if (recipe != null)
+            {
+                recipe.RecipeImageUrl = ConvertImagePathToUrl(recipe.RecipeImageUrl);
+            }
+
+            return recipe;
         }
 
         public async Task<Recipe> CreateRecipeAsync(Recipe recipe)
@@ -106,18 +119,34 @@ namespace tarifkapida.Services
 
         public async Task<List<Recipe>> SearchRecipesAsync(string searchTerm)
         {
-            return await _dbContext.RECIPE
+            var recipes = await _dbContext.RECIPE
                 .Include(r => r.Reviews)
                 .Where(r => r.RecipeName.Contains(searchTerm) || r.RecipeIngredients.Contains(searchTerm))
                 .ToListAsync();
+
+            // Resim URL'lerini dönüştür
+            foreach (var recipe in recipes)
+            {
+                recipe.RecipeImageUrl = ConvertImagePathToUrl(recipe.RecipeImageUrl);
+            }
+
+            return recipes;
         }
 
         public async Task<List<Recipe>> GetRecipesByUserIdAsync(int userId)
         {
-            return await _dbContext.RECIPE
+            var recipes = await _dbContext.RECIPE
                 .Include(r => r.Reviews)
                 .Where(r => r.UserId == userId)
                 .ToListAsync();
+
+            // Resim URL'lerini dönüştür
+            foreach (var recipe in recipes)
+            {
+                recipe.RecipeImageUrl = ConvertImagePathToUrl(recipe.RecipeImageUrl);
+            }
+
+            return recipes;
         }
 
         public async Task<bool> UpdateRecipeImageAsync(int recipeId, string imageUrl)
@@ -132,20 +161,58 @@ namespace tarifkapida.Services
             return true;
         }
 
-        public Task<List<Recipe>> GetRecipesByCategoryIdAsync(int categoryId)
+        public async Task<List<Recipe>> GetRecipesByCategoryIdAsync(int categoryId)
         {
-            return _dbContext.RECIPE
+            var recipes = await _dbContext.RECIPE
                 .Where(r => r.CategoryId == categoryId)
                 .Include(r => r.Reviews)
                 .ToListAsync();
+
+            // Resim URL'lerini dönüştür
+            foreach (var recipe in recipes)
+            {
+                recipe.RecipeImageUrl = ConvertImagePathToUrl(recipe.RecipeImageUrl);
+            }
+
+            return recipes;
         }
 
-        public Task<List<Recipe>> GetRecipesByCategoryNameAsync(string categoryName)
+        public async Task<List<Recipe>> GetRecipesByCategoryNameAsync(string categoryName)
         {
-            return _dbContext.RECIPE
+            var recipes = await _dbContext.RECIPE
                 .Where(r => r.Category.CategoryName == categoryName)
                 .Include(r => r.Reviews)
                 .ToListAsync();
+
+            // Resim URL'lerini dönüştür
+            foreach (var recipe in recipes)
+            {
+                recipe.RecipeImageUrl = ConvertImagePathToUrl(recipe.RecipeImageUrl);
+            }
+
+            return recipes;
+        }
+
+        private string ConvertImagePathToUrl(string? imagePath)
+        {
+            if (string.IsNullOrEmpty(imagePath))
+                return string.Empty;
+
+            // Eğer zaten web URL formatındaysa, olduğu gibi döndür
+            if (imagePath.StartsWith("http://") || imagePath.StartsWith("https://"))
+                return imagePath;
+
+            // Eğer zaten /images/ ile başlıyorsa, olduğu gibi döndür
+            if (imagePath.StartsWith("/images/"))
+                return imagePath;
+
+            // Tam dosya yolundan dosya adını çıkar
+            var fileName = Path.GetFileName(imagePath);
+            if (string.IsNullOrEmpty(fileName))
+                return string.Empty;
+
+            // Web URL formatına dönüştür
+            return $"/images/{fileName}";
         }
     }
 }

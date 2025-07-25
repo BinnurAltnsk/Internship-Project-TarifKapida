@@ -55,6 +55,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowLocalhost");
 
+// Static files middleware'ini ekleyin
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

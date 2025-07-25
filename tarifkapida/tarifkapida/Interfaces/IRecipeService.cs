@@ -13,6 +13,7 @@ namespace tarifkapida.Interfaces
         Task<bool> DeleteRecipeAsync(int recipeId);
         Task<List<Recipe>> SearchRecipesAsync(string searchTerm);
         Task<List<Recipe>> GetRecipesByUserIdAsync(int userId);
+        Task<bool> UpdateRecipeImageAsync(int recipeId, string imageUrl);
         Task<List<Recipe>> GetRecipesByCategoryIdAsync(int categoryId);
         Task<List<Recipe>> GetRecipesByCategoryNameAsync(string categoryName);
     }
