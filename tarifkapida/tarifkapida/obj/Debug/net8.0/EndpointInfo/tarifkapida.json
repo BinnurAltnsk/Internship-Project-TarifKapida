@@ -928,7 +928,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Review"
+                    "$ref": "#/components/schemas/ReviewDto"
                   }
                 }
               },
@@ -936,7 +936,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Review"
+                    "$ref": "#/components/schemas/ReviewDto"
                   }
                 }
               },
@@ -944,7 +944,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Review"
+                    "$ref": "#/components/schemas/ReviewDto"
                   }
                 }
               }
@@ -1466,7 +1466,7 @@
         }
       }
     },
-    "/api/UserProfile/{userId}": {
+    "/api/UserProfile/GetUserProfile/{userId}": {
       "get": {
         "tags": [
           "UserProfile"
@@ -1506,7 +1506,7 @@
         }
       }
     },
-    "/api/UserProfile": {
+    "/api/UserProfile/CreateUserProfile": {
       "post": {
         "tags": [
           "UserProfile"
@@ -1553,6 +1553,175 @@
           }
         }
       }
+    },
+    "/api/UserProfile/UpdateUserProfile": {
+      "put": {
+        "tags": [
+          "UserProfile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UserProfile/UploadProfilePhoto": {
+      "post": {
+        "tags": [
+          "UserProfile"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ContentDisposition": {
+                    "type": "string"
+                  },
+                  "ContentType": {
+                    "type": "string"
+                  },
+                  "Headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "Length": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "FileName": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "ContentDisposition": {
+                  "style": "form"
+                },
+                "ContentType": {
+                  "style": "form"
+                },
+                "Headers": {
+                  "style": "form"
+                },
+                "Length": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "FileName": {
+                  "style": "form"
+                },
+                "userId": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserProfile/GetProfilePhoto/{userId}": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserProfile/DeleteProfilePhoto/{userId}": {
+      "delete": {
+        "tags": [
+          "UserProfile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1572,9 +1741,10 @@
             "type": "string",
             "nullable": true
           },
-          "recipeId": {
+          "parentCategoryId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "recipes": {
             "type": "array",
@@ -1582,14 +1752,6 @@
               "$ref": "#/components/schemas/Recipe"
             },
             "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false
@@ -1665,13 +1827,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Review"
-            },
-            "nullable": true
-          },
-          "categorys": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Category"
             },
             "nullable": true
           },
@@ -1863,36 +2018,69 @@
       "UserProfile": {
         "type": "object",
         "properties": {
-          "userProfileId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "userId": {
             "type": "integer",
             "format": "int32"
           },
-          "user": {
-            "$ref": "#/components/schemas/Users"
-          },
-          "profileImageUrl": {
+          "username": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "format": "email",
             "nullable": true
           },
           "bio": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "instagram": {
+          "location": {
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "facebook": {
+          "website": {
+            "maxLength": 200,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "twitter": {
+          "phoneNumber": {
+            "maxLength": 20,
+            "minLength": 0,
             "type": "string",
             "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "profileImageUrl": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/Users"
           }
         },
         "additionalProperties": false
@@ -1900,61 +2088,125 @@
       "UserProfileDto": {
         "type": "object",
         "properties": {
-          "userProfileId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "userId": {
             "type": "integer",
             "format": "int32"
           },
-          "profileImageUrl": {
+          "username": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "format": "email",
             "nullable": true
           },
           "bio": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "instagram": {
+          "location": {
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "facebook": {
+          "website": {
+            "maxLength": 200,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "twitter": {
+          "phoneNumber": {
+            "maxLength": 20,
+            "minLength": 0,
             "type": "string",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "profileImageUrl": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
       "UserProfileRequest": {
+        "required": [
+          "userId"
+        ],
         "type": "object",
         "properties": {
           "userId": {
             "type": "integer",
             "format": "int32"
           },
-          "profileImageUrl": {
+          "username": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "format": "email",
             "nullable": true
           },
           "bio": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "instagram": {
+          "location": {
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "facebook": {
+          "website": {
+            "maxLength": 200,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "twitter": {
+          "phoneNumber": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "profileImageUrl": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           }

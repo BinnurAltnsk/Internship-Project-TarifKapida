@@ -1,3 +1,5 @@
-wwwroot\images\ayranasicorbasi.jpg
-wwwroot\images\magnolya.jpg
-wwwroot\images\sarma.jpg
+wwwroot\images\ProfilePhoto\baygınkopek.jpg
+wwwroot\images\ProfilePhoto\user2.jpg
+wwwroot\images\Recipes\ayranasicorbasi.jpg
+wwwroot\images\Recipes\magnolya.jpg
+wwwroot\images\Recipes\sarma.jpg

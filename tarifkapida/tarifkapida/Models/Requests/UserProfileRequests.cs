@@ -2,37 +2,33 @@
 
 namespace tarifkapida.Models.Requests
 {
-    public class UserProfileRequests
-    {
-        [Required]
-        public string UserName { get; set; }
-        [Required]
-        public string UserEmail { get; set; }= string.Empty;
-        [Required]
-        public string Password { get; set; }
-        [Required]
-        public string Email { get; set; } 
-
-    }
-
     public class UserProfileRequest
     {
+        [Required]
         public int UserId { get; set; }
-        public string? ProfileImageUrl { get; set; }
-        public string? Bio { get; set; }
-        public string? Instagram { get; set; }
-        public string? Facebook { get; set; }
-        public string? Twitter { get; set; }
-    }
 
-    public class UserProfileDto
-    {
-        public int UserProfileId { get; set; }
-        public int UserId { get; set; }
-        public string? ProfileImageUrl { get; set; }
+        [StringLength(50)]
+        public string? Username { get; set; }
+
+        [EmailAddress]
+        [StringLength(100)]
+        public string? Email { get; set; }
+
+        [StringLength(500)]
         public string? Bio { get; set; }
-        public string? Instagram { get; set; }
-        public string? Facebook { get; set; }
-        public string? Twitter { get; set; }
+
+        [StringLength(100)]
+        public string? Location { get; set; }
+
+        [StringLength(200)]
+        public string? Website { get; set; }
+
+        [StringLength(20)]
+        public string? PhoneNumber { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
+
+        [StringLength(500)]
+        public string? ProfileImageUrl { get; set; }
     }
 }

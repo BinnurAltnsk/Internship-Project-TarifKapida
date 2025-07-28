@@ -5,6 +5,8 @@ namespace tarifkapida.Data
 {
     public class AppDbContext : DbContext
     {
+        internal readonly object UserProfiles;
+
         public AppDbContext()
         {
         }
@@ -38,21 +40,12 @@ namespace tarifkapida.Data
                 .WithMany(u => u.Recipes)
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.SetNull); // User silinirse Recipe'yi silme, UserId'yi null yap
-
             // Recipe - Category ilişkisi
             modelBuilder.Entity<Recipe>()
                 .HasOne(r => r.Category)
                 .WithMany(c => c.Recipes)
                 .HasForeignKey(r => r.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict); // Kategori silinirse tarifler silinmesin
-
-            // Users - UserProfile birebir ilişkisi
-            modelBuilder.Entity<Users>()
-                .HasOne(u => u.UserProfile)
-                .WithOne(up => up.User)
-                .HasForeignKey<UserProfile>(up => up.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
+                .OnDelete(DeleteBehavior.Restrict); 
             // Favorite ilişkisi (User-Recipe)
             modelBuilder.Entity<Favorite>()
                 .HasKey(f => f.Id);
@@ -68,6 +61,40 @@ namespace tarifkapida.Data
                 .WithMany()
                 .HasForeignKey(f => f.RecipeId)
                 .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<UserProfile>(entity =>
+            {
+                entity.HasKey(e => e.UserId);
+
+                entity.Property(e => e.Username)
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Bio)
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.Location)
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Website)
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.ProfileImageUrl)
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.CreatedAt)
+                    .HasDefaultValueSql("GETUTCDATE()");
+
+                // User ile ilişki
+                entity.HasOne(e => e.User)
+                    .WithOne()
+                    .HasForeignKey<UserProfile>(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -17,10 +17,11 @@ namespace tarifkapida.Controllers
         }
 
         [HttpGet("GetReviews")]
-        public List<Review> GetReviews()
+        public List<ReviewDto> GetReviews()
         {
-            return reviewService.GetReviews();
+            return reviewService.GetReviewDtos();
         }
+
 
         [HttpGet("GetReviewById/{reviewId}")]
         public async Task<ActionResult<Review?>> GetReviewById(int reviewId)

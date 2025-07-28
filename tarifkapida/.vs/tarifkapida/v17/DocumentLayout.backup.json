@@ -3,16 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\services\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\services\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\interfaces\\ireviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\interfaces\\ireviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\models\\requests\\userprofilerequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\models\\requests\\userprofilerequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\interfaces\\iuserprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\interfaces\\iuserprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\models\\dto\\userprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\models\\dto\\userprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|c:\\users\\x_user\\desktop\\internship-project-tarifkapida\\tarifkapida\\tarifkapida\\services\\userprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D86680-242C-456A-BBCC-F94FF06505CA}|tarifkapida\\tarifkapida.csproj|solutionrelative:tarifkapida\\services\\userprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +46,129 @@
       "DocumentGroups": [
         {
           "DockedWidth": 524,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IReviewService.cs",
-              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Interfaces\\IReviewService.cs",
-              "RelativeDocumentMoniker": "tarifkapida\\Interfaces\\IReviewService.cs",
-              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Interfaces\\IReviewService.cs",
-              "RelativeToolTip": "tarifkapida\\Interfaces\\IReviewService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABCAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "UserProfileController.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Controllers\\UserProfileController.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Controllers\\UserProfileController.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Controllers\\UserProfileController.cs",
+              "RelativeToolTip": "tarifkapida\\Controllers\\UserProfileController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAADgvzYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T10:31:52.11Z"
+              "WhenOpened": "2025-07-28T08:45:57.886Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReviewService.cs",
-              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Services\\ReviewService.cs",
-              "RelativeDocumentMoniker": "tarifkapida\\Services\\ReviewService.cs",
-              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Services\\ReviewService.cs",
-              "RelativeToolTip": "tarifkapida\\Services\\ReviewService.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAA0wFoAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "IUserProfileService.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Interfaces\\IUserProfileService.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Interfaces\\IUserProfileService.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Interfaces\\IUserProfileService.cs",
+              "RelativeToolTip": "tarifkapida\\Interfaces\\IUserProfileService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T10:30:19.309Z",
+              "WhenOpened": "2025-07-28T08:46:10.486Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ReviewController.cs",
-              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Controllers\\ReviewController.cs",
-              "RelativeDocumentMoniker": "tarifkapida\\Controllers\\ReviewController.cs",
-              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Controllers\\ReviewController.cs",
-              "RelativeToolTip": "tarifkapida\\Controllers\\ReviewController.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAADwvzwAAAA0AAAAAAAAAA==",
+              "Title": "UserProfileRequests.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Models\\Requests\\UserProfileRequests.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Models\\Requests\\UserProfileRequests.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Models\\Requests\\UserProfileRequests.cs",
+              "RelativeToolTip": "tarifkapida\\Models\\Requests\\UserProfileRequests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T10:24:57.286Z"
+              "WhenOpened": "2025-07-28T08:46:24.952Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserProfile.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Models\\UserProfile.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Models\\UserProfile.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Models\\UserProfile.cs",
+              "RelativeToolTip": "tarifkapida\\Models\\UserProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T07:10:18.385Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserProfileService.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Services\\UserProfileService.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Services\\UserProfileService.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Services\\UserProfileService.cs",
+              "RelativeToolTip": "tarifkapida\\Services\\UserProfileService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T08:47:18.088Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Program.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Program.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Program.cs",
+              "RelativeToolTip": "tarifkapida\\Program.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC4AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T11:40:54.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "tarifkapida\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAuwGcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T11:36:23.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserProfileDto.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Models\\DTO\\UserProfileDto.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Models\\DTO\\UserProfileDto.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Models\\DTO\\UserProfileDto.cs",
+              "RelativeToolTip": "tarifkapida\\Models\\DTO\\UserProfileDto.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA9wBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T11:31:38.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "tarifkapida\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\x_user\\Desktop\\Internship-Project-TarifKapida\\tarifkapida\\tarifkapida\\Controllers\\UserController.cs",
+              "RelativeToolTip": "tarifkapida\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBAAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T11:10:20.884Z",
+              "EditorCaption": ""
             }
           ]
         }

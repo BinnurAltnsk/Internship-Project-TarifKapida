@@ -1,8 +1,9 @@
-﻿using tarifkapida.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using tarifkapida.Data;
 using tarifkapida.Interfaces;
 using tarifkapida.Models;
+using tarifkapida.Models.DTOs;
 using tarifkapida.Models.Requests;
-using Microsoft.EntityFrameworkCore;
 
 namespace tarifkapida.Services
 {
@@ -10,62 +11,121 @@ namespace tarifkapida.Services
     {
         private readonly AppDbContext _dbContext;
 
-        public UserProfileService(AppDbContext dbContext)
+        public UserProfileService(AppDbContext context)
         {
-            _dbContext = dbContext;
+            _dbContext = context;
         }
 
         public async Task<UserProfileDto?> GetUserProfileAsync(int userId)
         {
-            var profile = await _dbContext.USERPROFILE.FirstOrDefaultAsync(up => up.UserId == userId);
-            if (profile == null) return null;
-            return new UserProfileDto
-            {
-                UserProfileId = profile.UserProfileId,
-                UserId = profile.UserId,
-                ProfileImageUrl = profile.ProfileImageUrl,
-                Bio = profile.Bio,
-                Instagram = profile.Instagram,
-                Facebook = profile.Facebook,
-                Twitter = profile.Twitter
-            };
+            var profile = await _dbContext.USERPROFILE
+                .FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (profile == null)
+                return null;
+
+            return MapToDto(profile);
         }
 
         public async Task<UserProfileDto> CreateOrUpdateUserProfileAsync(UserProfileRequest request)
         {
-            var profile = await _dbContext.USERPROFILE.FirstOrDefaultAsync(up => up.UserId == request.UserId);
-            if (profile == null)
+            var existingProfile = await _dbContext.USERPROFILE
+                .FirstOrDefaultAsync(p => p.UserId == request.UserId);
+
+            if (existingProfile == null)
             {
-                profile = new UserProfile
+                // Yeni profil oluştur
+                var newProfile = new UserProfile
                 {
                     UserId = request.UserId,
-                    ProfileImageUrl = request.ProfileImageUrl,
+                    Username = request.Username,
+                    Email = request.Email,
                     Bio = request.Bio,
-                    Instagram = request.Instagram,
-                    Facebook = request.Facebook,
-                    Twitter = request.Twitter
+                    Location = request.Location,
+                    Website = request.Website,
+                    PhoneNumber = request.PhoneNumber,
+                    DateOfBirth = request.DateOfBirth,
+                    ProfileImageUrl = request.ProfileImageUrl,
+                    CreatedAt = DateTime.UtcNow
                 };
-                _dbContext.USERPROFILE.Add(profile);
+
+                _dbContext.USERPROFILE.Add(newProfile);
+                await _dbContext.SaveChangesAsync();
+
+                return MapToDto(newProfile);
             }
             else
             {
-                profile.ProfileImageUrl = request.ProfileImageUrl;
-                profile.Bio = request.Bio;
-                profile.Instagram = request.Instagram;
-                profile.Facebook = request.Facebook;
-                profile.Twitter = request.Twitter;
-                _dbContext.USERPROFILE.Update(profile);
+                // Mevcut profili güncelle
+                existingProfile.Username = request.Username ?? existingProfile.Username;
+                existingProfile.Email = request.Email ?? existingProfile.Email;
+                existingProfile.Bio = request.Bio ?? existingProfile.Bio;
+                existingProfile.Location = request.Location ?? existingProfile.Location;
+                existingProfile.Website = request.Website ?? existingProfile.Website;
+                existingProfile.PhoneNumber = request.PhoneNumber ?? existingProfile.PhoneNumber;
+                existingProfile.DateOfBirth = request.DateOfBirth ?? existingProfile.DateOfBirth;
+                existingProfile.ProfileImageUrl = request.ProfileImageUrl ?? existingProfile.ProfileImageUrl;
+                existingProfile.UpdatedAt = DateTime.UtcNow;
+
+                await _dbContext.SaveChangesAsync();
+
+                return MapToDto(existingProfile);
             }
+        }
+
+        public async Task<UserProfileDto> UpdateProfilePhotoAsync(int userId, string imageUrl)
+        {
+            var profile = await _dbContext.USERPROFILE
+                .FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (profile == null)
+                throw new InvalidOperationException("User profile not found");
+
+            profile.ProfileImageUrl = imageUrl;
+            profile.UpdatedAt = DateTime.UtcNow;
+
             await _dbContext.SaveChangesAsync();
+
+            return MapToDto(profile);
+        }
+
+        public async Task<UserProfileDto> DeleteProfilePhotoAsync(int userId)
+        {
+            var profile = await _dbContext.USERPROFILE
+                .FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (profile == null)
+                throw new InvalidOperationException("User profile not found");
+
+            profile.ProfileImageUrl = null;
+            profile.UpdatedAt = DateTime.UtcNow;
+
+            await _dbContext.SaveChangesAsync();
+
+            return MapToDto(profile);
+        }
+
+        public async Task<bool> ProfileExistsAsync(int userId)
+        {
+            return await _dbContext.USERPROFILE
+                .AnyAsync(p => p.UserId == userId);
+        }
+
+        private static UserProfileDto MapToDto(UserProfile profile)
+        {
             return new UserProfileDto
             {
-                UserProfileId = profile.UserProfileId,
                 UserId = profile.UserId,
-                ProfileImageUrl = profile.ProfileImageUrl,
+                Username = profile.Username,
+                Email = profile.Email,
                 Bio = profile.Bio,
-                Instagram = profile.Instagram,
-                Facebook = profile.Facebook,
-                Twitter = profile.Twitter
+                Location = profile.Location,
+                Website = profile.Website,
+                PhoneNumber = profile.PhoneNumber,
+                DateOfBirth = profile.DateOfBirth,
+                ProfileImageUrl = profile.ProfileImageUrl,
+                CreatedAt = profile.CreatedAt,
+                UpdatedAt = profile.UpdatedAt
             };
         }
     }

@@ -14,5 +14,6 @@ namespace tarifkapida.Interfaces
         List<Review> GetReviewsByUserId(int userId);
         Task<object> GetPagedReviewsAsync(int page, int pageSize);
         Task<object> GetPagedReviewsByRecipeAsync(int recipeId, int page, int pageSize);
+        List<ReviewDto> GetReviewDtos();
     }
 }

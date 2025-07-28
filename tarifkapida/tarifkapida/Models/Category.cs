@@ -9,10 +9,7 @@ namespace tarifkapida.Models
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string? CategoryDescription { get; set; }
-        public int RecipeId { get; set; }
+        public int? ParentCategoryId { get; set; }
         public ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
-
     }
 }

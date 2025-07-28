@@ -610,7 +610,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[tarifkapida.Models.Review, tarifkapida, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[tarifkapida.Models.Requests.ReviewDto, tarifkapida, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -851,8 +851,8 @@
   },
   {
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
-    "Method": "CreateOrUpdateUserProfile",
-    "RelativePath": "api/UserProfile",
+    "Method": "CreateUserProfile",
+    "RelativePath": "api/UserProfile/CreateUserProfile",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -865,7 +865,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "tarifkapida.Models.Requests.UserProfileDto",
+        "Type": "tarifkapida.Models.DTOs.UserProfileDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -877,8 +877,40 @@
   },
   {
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "DeleteProfilePhoto",
+    "RelativePath": "api/UserProfile/DeleteProfilePhoto/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "GetProfilePhoto",
+    "RelativePath": "api/UserProfile/GetProfilePhoto/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
     "Method": "GetUserProfile",
-    "RelativePath": "api/UserProfile/{userId}",
+    "RelativePath": "api/UserProfile/GetUserProfile/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -891,7 +923,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "tarifkapida.Models.Requests.UserProfileDto",
+        "Type": "tarifkapida.Models.DTOs.UserProfileDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -900,5 +932,77 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "UpdateUserProfile",
+    "RelativePath": "api/UserProfile/UpdateUserProfile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "tarifkapida.Models.Requests.UserProfileRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tarifkapida.Models.DTOs.UserProfileDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "UploadProfilePhoto",
+    "RelativePath": "api/UserProfile/UploadProfilePhoto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

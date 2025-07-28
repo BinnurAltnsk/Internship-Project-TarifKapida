@@ -70,6 +70,7 @@ namespace tarifkapida.Services
                     ReviewUpdatedAt = r.ReviewUpdatedAt
                 }).ToList();
         }
+
         public async Task<object> GetPagedReviewsAsync(int page, int pageSize)
         {
             var query = _dbContext.REVIEW.OrderByDescending(r => r.ReviewCreatedAt);

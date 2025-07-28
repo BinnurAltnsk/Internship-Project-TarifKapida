@@ -37,18 +37,10 @@ namespace tarifkapida.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("RecipeId")
+                    b.Property<int?>("ParentCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("CategoryId");
-
-                    b.HasIndex("RecipeId");
 
                     b.ToTable("CATEGORY");
                 });
@@ -173,36 +165,51 @@ namespace tarifkapida.Migrations
 
             modelBuilder.Entity("tarifkapida.Models.UserProfile", b =>
                 {
-                    b.Property<int>("UserProfileId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserProfileId"));
-
-                    b.Property<string>("Bio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Facebook")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Instagram")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProfileImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Twitter")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserProfileId");
+                    b.Property<string>("Bio")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
 
-                    b.ToTable("USERPROFILE");
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ProfileImageUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("tarifkapida.Models.Users", b =>
@@ -220,22 +227,18 @@ namespace tarifkapida.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserProfileUserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
-                    b.ToTable("USER");
-                });
+                    b.HasIndex("UserProfileUserId");
 
-            modelBuilder.Entity("tarifkapida.Models.Category", b =>
-                {
-                    b.HasOne("tarifkapida.Models.Recipe", null)
-                        .WithMany("Categorys")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("USER");
                 });
 
             modelBuilder.Entity("tarifkapida.Models.Favorite", b =>
@@ -292,12 +295,21 @@ namespace tarifkapida.Migrations
             modelBuilder.Entity("tarifkapida.Models.UserProfile", b =>
                 {
                     b.HasOne("tarifkapida.Models.Users", "User")
-                        .WithOne("UserProfile")
+                        .WithOne()
                         .HasForeignKey("tarifkapida.Models.UserProfile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("tarifkapida.Models.Users", b =>
+                {
+                    b.HasOne("tarifkapida.Models.UserProfile", "UserProfile")
+                        .WithMany()
+                        .HasForeignKey("UserProfileUserId");
+
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("tarifkapida.Models.Category", b =>
@@ -307,8 +319,6 @@ namespace tarifkapida.Migrations
 
             modelBuilder.Entity("tarifkapida.Models.Recipe", b =>
                 {
-                    b.Navigation("Categorys");
-
                     b.Navigation("Reviews");
                 });
 
@@ -317,8 +327,6 @@ namespace tarifkapida.Migrations
                     b.Navigation("Recipes");
 
                     b.Navigation("Reviews");
-
-                    b.Navigation("UserProfile");
                 });
 #pragma warning restore 612, 618
         }

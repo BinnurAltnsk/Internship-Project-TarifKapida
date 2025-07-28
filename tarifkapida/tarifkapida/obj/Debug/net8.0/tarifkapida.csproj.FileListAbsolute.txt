@@ -7,15 +7,6 @@ C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\ta
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\x_user\Desktop\Yeni klasör\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.sourcelink.json
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.csproj.AssemblyReference.cache
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\rpswa.dswa.cache.json
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.AssemblyInfoInputs.cache
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.AssemblyInfo.cs
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.csproj.CoreCompileInputs.cache
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.sourcelink.json
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\bin\Debug\net8.0\appsettings.json
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\bin\Debug\net8.0\tarifkapida.staticwebassets.runtime.json
@@ -133,6 +124,15 @@ C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\b
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.csproj.AssemblyReference.cache
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.AssemblyInfoInputs.cache
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.AssemblyInfo.cs
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.csproj.CoreCompileInputs.cache
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.sourcelink.json
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
