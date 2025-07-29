@@ -1506,54 +1506,6 @@
         }
       }
     },
-    "/api/UserProfile/CreateUserProfile": {
-      "post": {
-        "tags": [
-          "UserProfile"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserProfileRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserProfileRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserProfileRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserProfileDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserProfileDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserProfileDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/UserProfile/UpdateUserProfile": {
       "put": {
         "tags": [
@@ -1602,8 +1554,96 @@
         }
       }
     },
-    "/api/UserProfile/UploadProfilePhoto": {
+    "/api/UserProfile/CreateUserProfile": {
       "post": {
+        "tags": [
+          "UserProfile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UserProfile/ProfileExists/{userId}": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UserProfile/UploadUserProfilePhoto": {
+      "get": {
         "tags": [
           "UserProfile"
         ],
@@ -1677,8 +1717,48 @@
         }
       }
     },
-    "/api/UserProfile/GetProfilePhoto/{userId}": {
+    "/api/UserProfile/GetUserProfilePhoto/{userId}": {
       "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UserProfile/DeleteUserProfilePhoto/{userId}": {
+      "post": {
         "tags": [
           "UserProfile"
         ],
@@ -1700,8 +1780,39 @@
         }
       }
     },
-    "/api/UserProfile/DeleteProfilePhoto/{userId}": {
-      "delete": {
+    "/api/UserProfile/UpdateNotificationSettings": {
+      "put": {
+        "tags": [
+          "UserProfile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationSettingsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationSettingsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationSettingsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserProfile/GetNotificationSettings/{userId}": {
+      "get": {
         "tags": [
           "UserProfile"
         ],
@@ -1718,7 +1829,109 @@
         ],
         "responses": {
           "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationSettingsDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationSettingsDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationSettingsDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UserProfile/LinkSocialAccount": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accessToken",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserProfile/GetLinkedSocialAccounts/{userId}": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SocialAccountDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SocialAccountDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SocialAccountDto"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1756,6 +1969,24 @@
         },
         "additionalProperties": false
       },
+      "LinkedSocialAccount": {
+        "type": "object",
+        "properties": {
+          "linkedSocialAccountId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "provider": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginRequest": {
         "type": "object",
         "properties": {
@@ -1766,6 +1997,61 @@
           "password": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotificationSettings": {
+        "type": "object",
+        "properties": {
+          "notificationSettingsId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "emailNotifications": {
+            "type": "boolean"
+          },
+          "pushNotifications": {
+            "type": "boolean"
+          },
+          "smsNotifications": {
+            "type": "boolean"
+          },
+          "newsletterSubscription": {
+            "type": "boolean"
+          },
+          "promotionalOffers": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotificationSettingsDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "notificationSettings": {
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotificationSettingsRequest": {
+        "type": "object",
+        "properties": {
+          "notificationSettings": {
+            "nullable": true,
+            "readOnly": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -2015,6 +2301,18 @@
         },
         "additionalProperties": false
       },
+      "SocialAccountDto": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "nullable": true
+          },
+          "accountId": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserProfile": {
         "type": "object",
         "properties": {
@@ -2081,6 +2379,20 @@
           },
           "user": {
             "$ref": "#/components/schemas/Users"
+          },
+          "notificationSettings": {
+            "$ref": "#/components/schemas/NotificationSettings"
+          },
+          "linkedSocialAccount": {
+            "$ref": "#/components/schemas/LinkedSocialAccount"
+          },
+          "linkedSocialAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkedSocialAccount"
+            },
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false

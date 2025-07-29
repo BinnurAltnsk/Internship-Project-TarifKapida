@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Mvc;
 using tarifkapida.Interfaces;
+using tarifkapida.Models.DTO;
 using tarifkapida.Models.DTOs;
 using tarifkapida.Models.Requests;
 
@@ -26,16 +28,6 @@ namespace tarifkapida.Controllers
             }
             return Ok(profile);
         }
-        [HttpPost("CreateUserProfile")]
-        public async Task<ActionResult<UserProfileDto>> CreateUserProfile([FromBody] UserProfileRequest request)
-        {
-            if (request == null || request.UserId <= 0)
-            {
-                return BadRequest("Invalid user profile data.");
-            }
-            var createdProfile = await userProfileService.CreateOrUpdateUserProfileAsync(request);
-            return CreatedAtAction(nameof(GetUserProfile), new { userId = createdProfile.UserId }, createdProfile);
-        }
         [HttpPut("UpdateUserProfile")]
         public async Task<ActionResult<UserProfileDto>> UpdateUserProfile([FromBody] UserProfileRequest request)
         {
@@ -43,12 +35,28 @@ namespace tarifkapida.Controllers
             {
                 return BadRequest("Invalid user profile data.");
             }
-            var updatedProfile = await userProfileService.CreateOrUpdateUserProfileAsync(request);
+            var updatedProfile = await userProfileService.UpdateUserProfileAsync(request);
             return Ok(updatedProfile);
         }
-        [HttpPost("UploadProfilePhoto")]
-        public async Task<IActionResult> UploadProfilePhoto([FromForm] FormFile file, [FromForm] int userId)
+        [HttpPost("CreateUserProfile")]
+        public async Task<ActionResult<UserProfileDto>> CreateUserProfile([FromBody] UserProfileRequest request)
         {
+            if (request == null || request.UserId <= 0)
+            {
+                return BadRequest("Invalid user profile data.");
+            }
+            var createdProfile = await userProfileService.CreateUserProfileAsync(request);
+            return CreatedAtAction(nameof(GetUserProfile), new { userId = createdProfile.UserId }, createdProfile);
+        }
+        [HttpGet("ProfileExists/{userId}")]
+        public async Task<ActionResult<bool>> ProfileExists(int userId)
+        {
+            var exists = await userProfileService.ProfileExistsAsync(userId);
+            return Ok(exists);
+        }   
+        [HttpGet("UploadUserProfilePhoto")]
+        public async Task<IActionResult> UploadProfilePhoto([FromForm] FormFile file, [FromForm] int userId)
+        {   
             if (file == null || file.Length == 0)
             {
                 return BadRequest("No file uploaded.");
@@ -59,25 +67,20 @@ namespace tarifkapida.Controllers
                 return NotFound("User profile not found.");
             }
             var photoUrl = await SaveFileAsync(file);
-            await userProfileService.UpdateProfilePhotoAsync(userId, photoUrl);
+            await userProfileService.UploadUserProfilePhotoAsync(userId, photoUrl);
             return Ok(new { ProfileImageUrl = photoUrl });
         }
-        [HttpGet("GetProfilePhoto/{userId}")]
-        public async Task<IActionResult> GetProfilePhoto(int userId)
+        [HttpGet("GetUserProfilePhoto/{userId}")]
+        public async Task<ActionResult<string>> GetUserProfilePhoto(int userId)
         {
-            var profile = await userProfileService.GetUserProfileAsync(userId);
-            if (profile == null || string.IsNullOrEmpty(profile.ProfileImageUrl))
+            var photoUrl = await userProfileService.GetUserProfilePhotoAsync(userId);
+            if (string.IsNullOrEmpty(photoUrl))
             {
                 return NotFound("Profile photo not found.");
             }
-            var photoStream = await GetFileStreamAsync(profile.ProfileImageUrl);
-            if (photoStream == null)
-            {
-                return NotFound("Photo file not found.");
-            }
-            return File(photoStream, "image/jpeg");
+            return Ok(photoUrl);
         }
-        [HttpDelete("DeleteProfilePhoto/{userId}")]
+        [HttpPost("DeleteUserProfilePhoto/{userId}")]
         public async Task<IActionResult> DeleteProfilePhoto(int userId)
         {
             var profile = await userProfileService.GetUserProfileAsync(userId);
@@ -86,9 +89,10 @@ namespace tarifkapida.Controllers
                 return NotFound("Profile photo not found.");
             }
             await DeleteFileAsync(profile.ProfileImageUrl);
-            await userProfileService.DeleteProfilePhotoAsync(userId);
+            await userProfileService.DeleteUserProfilePhotoAsync(userId);
             return NoContent();
-        }
+        }        
+        [HttpGet("SaveFile")]
         private async Task<string> SaveFileAsync(IFormFile file)
         {
             var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "ProfilePhoto");
@@ -105,16 +109,60 @@ namespace tarifkapida.Controllers
 
             return $"/images/ProfilePhoto/{uniqueFileName}";
         }
-        private async Task<Stream?> GetFileStreamAsync(string filePath)
+
+        [HttpPut("UpdateNotificationSettings")]
+        public async Task<IActionResult> UpdateNotificationSettings([FromBody] NotificationSettingsRequest request)
         {
-            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filePath.TrimStart('/'));
-
-            if (!System.IO.File.Exists(fullPath))
-                return null;
-
-            return new FileStream(fullPath, FileMode.Open, FileAccess.Read);
+            if (request == null || request.UserId <= 0)
+            {
+                return BadRequest("Invalid notification settings data.");
+            }
+            var updatedSettings = await userProfileService.UpdateNotificationSettingsAsync(request.UserId, request);
+            if (updatedSettings == null)
+            {
+                return NotFound("User profile not found.");
+            }
+            return Ok(updatedSettings);
         }
-
+        [HttpGet("GetNotificationSettings/{userId}")]
+        public async Task<ActionResult<NotificationSettingsDto>> GetNotificationSettings(int userId)
+        {
+            var settings = await userProfileService.GetNotificationSettingsAsync(userId);
+            if (settings == null)
+            {
+                return NotFound("Notification settings not found.");
+            }
+            return Ok(settings);
+        }
+        [HttpGet("LinkSocialAccount")]
+        public async Task<IActionResult> LinkSocialAccount([FromQuery] int userId, [FromQuery] string provider, [FromQuery] string accessToken)
+        {
+            if (userId <= 0 || string.IsNullOrEmpty(provider) || string.IsNullOrEmpty(accessToken))
+            {
+                return BadRequest("Invalid parameters for linking social account.");
+            }
+            var request = new SocialAccountRequest { AccessToken = accessToken };
+            var result = await userProfileService.LinkSocialAccountAsync(userId, provider, request);
+            if (result != null)
+            {
+                return Ok("Social account linked successfully.");
+            }
+            return BadRequest("Failed to link social account.");
+        }
+        [HttpGet("GetLinkedSocialAccounts/{userId}")]
+        public async Task<ActionResult<List<SocialAccountDto>>> GetLinkedSocialAccounts(int userId)
+        {
+            if (userId <= 0)
+            {
+                return BadRequest("Invalid user ID.");
+            }
+            var accounts = await userProfileService.GetLinkedSocialAccountsAsync(userId);
+            if (accounts == null || accounts.Count == 0)
+            {
+                return NotFound("No linked social accounts found.");
+            }
+            return Ok(accounts);
+        }
         private async Task DeleteFileAsync(string filePath)
         {
             var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filePath.TrimStart('/'));

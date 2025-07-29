@@ -75,6 +75,34 @@ namespace tarifkapida.Migrations
                     b.ToTable("FAVORITE");
                 });
 
+            modelBuilder.Entity("tarifkapida.Models.NotificationSettings", b =>
+                {
+                    b.Property<int>("NotificationSettingsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationSettingsId"));
+
+                    b.Property<bool>("EmailNotifications")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("NewsletterSubscription")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PromotionalOffers")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PushNotifications")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("SMSNotifications")
+                        .HasColumnType("bit");
+
+                    b.HasKey("NotificationSettingsId");
+
+                    b.ToTable("NotificationSettings");
+                });
+
             modelBuilder.Entity("tarifkapida.Models.Recipe", b =>
                 {
                     b.Property<int>("RecipeId")
@@ -184,9 +212,15 @@ namespace tarifkapida.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("LinkedSocialAccountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Location")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("NotificationSettingsId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(20)
@@ -208,6 +242,10 @@ namespace tarifkapida.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("LinkedSocialAccountId");
+
+                    b.HasIndex("NotificationSettingsId");
 
                     b.ToTable("UserProfiles");
                 });
@@ -239,6 +277,32 @@ namespace tarifkapida.Migrations
                     b.HasIndex("UserProfileUserId");
 
                     b.ToTable("USER");
+                });
+
+            modelBuilder.Entity("tarifkapida.Services.LinkedSocialAccount", b =>
+                {
+                    b.Property<int>("LinkedSocialAccountId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LinkedSocialAccountId"));
+
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserProfileUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LinkedSocialAccountId");
+
+                    b.HasIndex("UserProfileUserId");
+
+                    b.ToTable("LinkedSocialAccount");
                 });
 
             modelBuilder.Entity("tarifkapida.Models.Favorite", b =>
@@ -294,11 +358,23 @@ namespace tarifkapida.Migrations
 
             modelBuilder.Entity("tarifkapida.Models.UserProfile", b =>
                 {
+                    b.HasOne("tarifkapida.Services.LinkedSocialAccount", "LinkedSocialAccount")
+                        .WithMany()
+                        .HasForeignKey("LinkedSocialAccountId");
+
+                    b.HasOne("tarifkapida.Models.NotificationSettings", "NotificationSettings")
+                        .WithMany()
+                        .HasForeignKey("NotificationSettingsId");
+
                     b.HasOne("tarifkapida.Models.Users", "User")
                         .WithOne()
                         .HasForeignKey("tarifkapida.Models.UserProfile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("LinkedSocialAccount");
+
+                    b.Navigation("NotificationSettings");
 
                     b.Navigation("User");
                 });
@@ -312,6 +388,13 @@ namespace tarifkapida.Migrations
                     b.Navigation("UserProfile");
                 });
 
+            modelBuilder.Entity("tarifkapida.Services.LinkedSocialAccount", b =>
+                {
+                    b.HasOne("tarifkapida.Models.UserProfile", null)
+                        .WithMany("LinkedSocialAccounts")
+                        .HasForeignKey("UserProfileUserId");
+                });
+
             modelBuilder.Entity("tarifkapida.Models.Category", b =>
                 {
                     b.Navigation("Recipes");
@@ -320,6 +403,11 @@ namespace tarifkapida.Migrations
             modelBuilder.Entity("tarifkapida.Models.Recipe", b =>
                 {
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("tarifkapida.Models.UserProfile", b =>
+                {
+                    b.Navigation("LinkedSocialAccounts");
                 });
 
             modelBuilder.Entity("tarifkapida.Models.Users", b =>

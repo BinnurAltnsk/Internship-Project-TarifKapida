@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using tarifkapida.Services;
 
 namespace tarifkapida.Models
 {
@@ -39,5 +40,10 @@ namespace tarifkapida.Models
 
         [ForeignKey("UserId")]
         public virtual Users? User { get; set; }
+
+        public virtual NotificationSettings? NotificationSettings { get; set; }
+
+        public virtual LinkedSocialAccount? LinkedSocialAccount { get; set; }
+        public ICollection<LinkedSocialAccount> LinkedSocialAccounts { get; internal set; }
     }
 }

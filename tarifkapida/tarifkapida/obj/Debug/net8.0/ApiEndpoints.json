@@ -878,8 +878,8 @@
   {
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
     "Method": "DeleteProfilePhoto",
-    "RelativePath": "api/UserProfile/DeleteProfilePhoto/{userId}",
-    "HttpMethod": "DELETE",
+    "RelativePath": "api/UserProfile/DeleteUserProfilePhoto/{userId}",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -893,8 +893,8 @@
   },
   {
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
-    "Method": "GetProfilePhoto",
-    "RelativePath": "api/UserProfile/GetProfilePhoto/{userId}",
+    "Method": "GetLinkedSocialAccounts",
+    "RelativePath": "api/UserProfile/GetLinkedSocialAccounts/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -905,7 +905,43 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tarifkapida.Models.DTO.SocialAccountDto, tarifkapida, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "GetNotificationSettings",
+    "RelativePath": "api/UserProfile/GetNotificationSettings/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tarifkapida.Models.DTO.NotificationSettingsDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
@@ -932,6 +968,100 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "GetUserProfilePhoto",
+    "RelativePath": "api/UserProfile/GetUserProfilePhoto/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "LinkSocialAccount",
+    "RelativePath": "api/UserProfile/LinkSocialAccount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "provider",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "accessToken",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "ProfileExists",
+    "RelativePath": "api/UserProfile/ProfileExists/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "UpdateNotificationSettings",
+    "RelativePath": "api/UserProfile/UpdateNotificationSettings",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "tarifkapida.Models.Requests.NotificationSettingsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
@@ -962,8 +1092,8 @@
   {
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
     "Method": "UploadProfilePhoto",
-    "RelativePath": "api/UserProfile/UploadProfilePhoto",
-    "HttpMethod": "POST",
+    "RelativePath": "api/UserProfile/UploadUserProfilePhoto",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
