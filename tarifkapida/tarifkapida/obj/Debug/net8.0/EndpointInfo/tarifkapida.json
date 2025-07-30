@@ -1507,7 +1507,7 @@
       }
     },
     "/api/UserProfile/UpdateUserProfile": {
-      "put": {
+      "post": {
         "tags": [
           "UserProfile"
         ],
@@ -1643,69 +1643,25 @@
       }
     },
     "/api/UserProfile/UploadUserProfilePhoto": {
-      "get": {
+      "post": {
         "tags": [
           "UserProfile"
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "ContentDisposition": {
-                    "type": "string"
-                  },
-                  "ContentType": {
-                    "type": "string"
-                  },
-                  "Headers": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "Length": {
-                    "type": "integer",
-                    "format": "int64"
-                  },
-                  "Name": {
-                    "type": "string"
-                  },
-                  "FileName": {
-                    "type": "string"
-                  },
-                  "userId": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
-                }
-              },
-              "encoding": {
-                "ContentDisposition": {
-                  "style": "form"
-                },
-                "ContentType": {
-                  "style": "form"
-                },
-                "Headers": {
-                  "style": "form"
-                },
-                "Length": {
-                  "style": "form"
-                },
-                "Name": {
-                  "style": "form"
-                },
-                "FileName": {
-                  "style": "form"
-                },
-                "userId": {
-                  "style": "form"
-                }
+                "$ref": "#/components/schemas/UserProfileRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileRequest"
               }
             }
           }

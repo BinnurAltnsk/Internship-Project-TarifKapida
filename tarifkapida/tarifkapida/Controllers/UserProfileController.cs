@@ -28,7 +28,7 @@ namespace tarifkapida.Controllers
             }
             return Ok(profile);
         }
-        [HttpPut("UpdateUserProfile")]
+        [HttpPost("UpdateUserProfile")]
         public async Task<ActionResult<UserProfileDto>> UpdateUserProfile([FromBody] UserProfileRequest request)
         {
             if (request == null || request.UserId <= 0)
@@ -53,22 +53,20 @@ namespace tarifkapida.Controllers
         {
             var exists = await userProfileService.ProfileExistsAsync(userId);
             return Ok(exists);
-        }   
-        [HttpGet("UploadUserProfilePhoto")]
-        public async Task<IActionResult> UploadProfilePhoto([FromForm] FormFile file, [FromForm] int userId)
-        {   
-            if (file == null || file.Length == 0)
+        }
+        [HttpPost("UploadUserProfilePhoto")]
+        public async Task<ActionResult> UploadProfilePhoto([FromBody] UserProfileRequest request)
+        {
+            try
             {
-                return BadRequest("No file uploaded.");
+                var updatedProfile = await userProfileService.UploadUserProfilePhotoAsync(request);
+                // API'den yeni fotoğraf url'sini döndür
+                return Ok(new { ProfileImageUrl = updatedProfile.ProfileImageUrl });
             }
-            var profile = await userProfileService.GetUserProfileAsync(userId);
-            if (profile == null)
+            catch (Exception ex)
             {
-                return NotFound("User profile not found.");
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
-            var photoUrl = await SaveFileAsync(file);
-            await userProfileService.UploadUserProfilePhotoAsync(userId, photoUrl);
-            return Ok(new { ProfileImageUrl = photoUrl });
         }
         [HttpGet("GetUserProfilePhoto/{userId}")]
         public async Task<ActionResult<string>> GetUserProfilePhoto(int userId)

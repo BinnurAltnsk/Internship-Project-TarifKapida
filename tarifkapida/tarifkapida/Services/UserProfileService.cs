@@ -69,18 +69,37 @@ namespace tarifkapida.Services
             return await _dbContext.USERPROFILE
                 .AnyAsync(p => p.UserId == userId);
         }
-        public async Task<UserProfileDto> UploadUserProfilePhotoAsync(int userId, string imageUrl)
+        public async Task<UserProfileDto> UploadUserProfilePhotoAsync(UserProfileRequest request)
         {
-            var profile = await _dbContext.USERPROFILE
-                .FirstOrDefaultAsync(p => p.UserId == userId);
+            string? imageUrl = null;
+            if (!string.IsNullOrEmpty(request.ProfileImageUrl) && request.ProfileImageUrl.StartsWith("data:image"))
+            {
+                string wwwRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                string imagesFolder = Path.Combine(wwwRootPath, "images", "ProfilePhoto");
 
+                if (!Directory.Exists(imagesFolder))
+                    Directory.CreateDirectory(imagesFolder);
+
+                string fileName = $"user_{request.UserId}_{Guid.NewGuid()}.jpg";
+                string filePath = Path.Combine(imagesFolder, fileName);
+
+                var base64Data = request.ProfileImageUrl.Substring(request.ProfileImageUrl.IndexOf(",") + 1);
+                byte[] imageBytes = Convert.FromBase64String(base64Data);
+                await System.IO.File.WriteAllBytesAsync(filePath, imageBytes);
+
+                imageUrl = $"/images/ProfilePhoto/{fileName}";
+            }
+
+            var profile = await _dbContext.USERPROFILE.FirstOrDefaultAsync(p => p.UserId == request.UserId);
             if (profile == null)
                 throw new InvalidOperationException("User profile not found");
 
-            profile.ProfileImageUrl = imageUrl;
-            profile.UpdatedAt = DateTime.UtcNow;
-
-            await _dbContext.SaveChangesAsync();
+            if (!string.IsNullOrEmpty(imageUrl))
+            {
+                profile.ProfileImageUrl = imageUrl;
+                profile.UpdatedAt = DateTime.UtcNow;
+                await _dbContext.SaveChangesAsync();
+            }
 
             return MapToDto(profile);
         }

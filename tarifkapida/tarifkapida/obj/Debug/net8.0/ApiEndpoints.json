@@ -1067,7 +1067,7 @@
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
     "Method": "UpdateUserProfile",
     "RelativePath": "api/UserProfile/UpdateUserProfile",
-    "HttpMethod": "PUT",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -1093,44 +1093,14 @@
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
     "Method": "UploadProfilePhoto",
     "RelativePath": "api/UserProfile/UploadUserProfilePhoto",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ContentDisposition",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ContentType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Headers",
-        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
-        "IsRequired": false
-      },
-      {
-        "Name": "Length",
-        "Type": "System.Int64",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FileName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "request",
+        "Type": "tarifkapida.Models.Requests.UserProfileRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

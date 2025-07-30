@@ -10,7 +10,7 @@ namespace tarifkapida.Interfaces
         Task<UserProfileDto> UpdateUserProfileAsync(UserProfileRequest request);
         Task<UserProfileDto> CreateUserProfileAsync(UserProfileRequest request);
         Task<bool> ProfileExistsAsync(int userId);
-        Task<UserProfileDto> UploadUserProfilePhotoAsync(int userId, string imageUrl);
+        Task<UserProfileDto> UploadUserProfilePhotoAsync(UserProfileRequest request);
         Task<string> GetUserProfilePhotoAsync(int userId);
         Task<bool> DeleteUserProfilePhotoAsync(int userId);
         Task<string> SaveFileAsync(IFormFile file);

@@ -1,5 +1,6 @@
 wwwroot\images\ProfilePhoto\baygınkopek.jpg
 wwwroot\images\ProfilePhoto\user2.jpg
+wwwroot\images\ProfilePhoto\user_1_7742dba8-7f90-4eb0-804c-f13ad5782aad.jpg
 wwwroot\images\Recipes\ayranasicorbasi.jpg
 wwwroot\images\Recipes\magnolya.jpg
 wwwroot\images\Recipes\sarma.jpg
