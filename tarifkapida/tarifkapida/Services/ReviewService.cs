@@ -59,9 +59,12 @@ namespace tarifkapida.Services
         {
             return _dbContext.REVIEW
                 .Include(r => r.User)
+                .Include(r => r.Recipe) // <-- EKLENDİ
                 .Select(r => new ReviewDto
                 {
                     ReviewId = r.ReviewId,
+                    RecipeId = r.RecipeId,
+                    RecipeName = r.Recipe != null ? r.Recipe.RecipeName : "Tarif silinmiş", // <-- EKLENDİ
                     ReviewText = r.ReviewText,
                     Rating = r.Rating,
                     UserId = r.UserId,

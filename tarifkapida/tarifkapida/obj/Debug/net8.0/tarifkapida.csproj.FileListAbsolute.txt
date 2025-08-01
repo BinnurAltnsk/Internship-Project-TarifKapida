@@ -147,3 +147,4 @@ C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\o
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.pdb
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\tarifkapida.genruntimeconfig.cache
 C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\ref\tarifkapida.dll
+C:\Users\x_user\Desktop\Internship-Project-TarifKapida\tarifkapida\tarifkapida\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

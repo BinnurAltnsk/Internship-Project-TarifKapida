@@ -45,5 +45,6 @@ namespace tarifkapida.Models.Requests
         public DateTime ReviewCreatedAt { get; set; }
         public DateTime ReviewUpdatedAt { get; set; }
         public string? Username { get; set; }
+        public string RecipeName { get; internal set; }
     }
 }

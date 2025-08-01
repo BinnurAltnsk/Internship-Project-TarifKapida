@@ -1,0 +1,8 @@
+wwwroot\images\ProfilePhoto\1_7935d2dd-1b32-4c37-860e-33f8de0e9821.jpg
+wwwroot\images\ProfilePhoto\1_f3f91d91-18c1-4231-a0a8-535a1927b830.jpg
+wwwroot\images\ProfilePhoto\2_1265e3f1-51e7-4373-8dd4-02f71e895039.jpg
+wwwroot\images\ProfilePhoto\baygınkopek.jpg
+wwwroot\images\ProfilePhoto\user2.jpg
+wwwroot\images\Recipes\ayranasicorbasi.jpg
+wwwroot\images\Recipes\magnolya.jpg
+wwwroot\images\Recipes\sarma.jpg

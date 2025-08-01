@@ -2274,6 +2274,11 @@
           "username": {
             "type": "string",
             "nullable": true
+          },
+          "recipeName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false

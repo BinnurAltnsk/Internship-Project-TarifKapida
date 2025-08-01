@@ -121,10 +121,28 @@ namespace tarifkapida.Services
 
         public async Task<List<Recipe>> SearchRecipesAsync(string searchTerm)
         {
-            var recipes = await _dbContext.RECIPE
+            if (string.IsNullOrWhiteSpace(searchTerm))
+                return new List<Recipe>();
+
+            var keywords = searchTerm
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Select(k => k.Trim())
+                .ToList();
+
+            var query = _dbContext.RECIPE
                 .Include(r => r.Reviews)
-                .Where(r => r.RecipeName.Contains(searchTerm) || r.RecipeIngredients.Contains(searchTerm))
-                .ToListAsync();
+                .AsQueryable();
+
+            // Her anahtar kelime için filtre uygula (AND ile)
+            foreach (var keyword in keywords)
+            {
+                var temp = keyword; // EF Core için closure problemi olmaması için
+                query = query.Where(r =>
+                    r.RecipeName.Contains(temp) ||
+                    r.RecipeIngredients.Contains(temp));
+            }
+
+            var recipes = await query.ToListAsync();
 
             // Resim URL'lerini dönüştür
             foreach (var recipe in recipes)
