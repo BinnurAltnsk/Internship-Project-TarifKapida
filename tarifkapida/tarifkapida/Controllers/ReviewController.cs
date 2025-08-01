@@ -80,6 +80,17 @@ namespace tarifkapida.Controllers
             var result = await reviewService.GetPagedReviewsByRecipeAsync(recipeId, page, pageSize);
             return Ok(result);
         }
+        [HttpGet("GetAverageRating/{recipeId}")]
+        public async Task<IActionResult> GetAverageRating(int recipeId)
+        {
+            var reviews = await reviewService.GetReviewsByRecipeIdAsync(recipeId);
+            if (reviews == null || !reviews.Any())
+                return Ok(new { averageRating = 0, reviewCount = 0 });
+
+            double average = reviews.Average(r => r.Rating);
+            int count = reviews.Count();
+            return Ok(new { averageRating = average, reviewCount = count });
+        }
 
     }
 }

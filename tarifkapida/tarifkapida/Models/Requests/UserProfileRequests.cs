@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// Models/Requests/UserProfileRequest.cs
+
+using System.ComponentModel.DataAnnotations;
 
 namespace tarifkapida.Models.Requests
 {
@@ -28,7 +30,6 @@ namespace tarifkapida.Models.Requests
 
         public DateTime? DateOfBirth { get; set; }
 
-        [StringLength(500)]
-        public string? ProfileImageUrl { get; set; }
+        public string? ProfileImageBase64 { get; set; }
     }
 }

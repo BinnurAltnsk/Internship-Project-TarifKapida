@@ -83,7 +83,7 @@ namespace tarifkapida.Data
                 entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(20);
 
-                entity.Property(e => e.ProfileImageUrl)
+                entity.Property(e => e.ProfileImageBase64)
                     .HasMaxLength(500);
 
                 entity.Property(e => e.CreatedAt)

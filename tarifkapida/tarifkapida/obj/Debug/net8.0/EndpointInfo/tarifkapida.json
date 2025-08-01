@@ -1191,6 +1191,29 @@
         }
       }
     },
+    "/api/Review/GetAverageRating/{recipeId}": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "parameters": [
+          {
+            "name": "recipeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/User/GetUsers": {
       "get": {
         "tags": [
@@ -1987,12 +2010,10 @@
         "properties": {
           "userId": {
             "type": "integer",
-            "format": "int32",
-            "readOnly": true
+            "format": "int32"
           },
           "notificationSettings": {
-            "nullable": true,
-            "readOnly": true
+            "$ref": "#/components/schemas/NotificationSettings"
           }
         },
         "additionalProperties": false
@@ -2261,9 +2282,11 @@
         "type": "object",
         "properties": {
           "provider": {
+            "type": "string",
             "nullable": true
           },
           "accountId": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2318,7 +2341,7 @@
             "format": "date-time",
             "nullable": true
           },
-          "profileImageUrl": {
+          "profileImageBase64": {
             "maxLength": 500,
             "minLength": 0,
             "type": "string",
@@ -2361,39 +2384,26 @@
             "format": "int32"
           },
           "username": {
-            "maxLength": 50,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           },
           "email": {
-            "maxLength": 100,
-            "minLength": 0,
             "type": "string",
-            "format": "email",
             "nullable": true
           },
           "bio": {
-            "maxLength": 500,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           },
           "location": {
-            "maxLength": 100,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           },
           "website": {
-            "maxLength": 200,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           },
           "phoneNumber": {
-            "maxLength": 20,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           },
@@ -2402,9 +2412,7 @@
             "format": "date-time",
             "nullable": true
           },
-          "profileImageUrl": {
-            "maxLength": 500,
-            "minLength": 0,
+          "profileImageBase64": {
             "type": "string",
             "nullable": true
           },
@@ -2472,9 +2480,7 @@
             "format": "date-time",
             "nullable": true
           },
-          "profileImageUrl": {
-            "maxLength": 500,
-            "minLength": 0,
+          "profileImageBase64": {
             "type": "string",
             "nullable": true
           }

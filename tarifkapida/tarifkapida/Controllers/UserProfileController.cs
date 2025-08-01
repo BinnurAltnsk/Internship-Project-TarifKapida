@@ -28,6 +28,7 @@ namespace tarifkapida.Controllers
             }
             return Ok(profile);
         }
+
         [HttpPost("UpdateUserProfile")]
         public async Task<ActionResult<UserProfileDto>> UpdateUserProfile([FromBody] UserProfileRequest request)
         {
@@ -38,6 +39,7 @@ namespace tarifkapida.Controllers
             var updatedProfile = await userProfileService.UpdateUserProfileAsync(request);
             return Ok(updatedProfile);
         }
+
         [HttpPost("CreateUserProfile")]
         public async Task<ActionResult<UserProfileDto>> CreateUserProfile([FromBody] UserProfileRequest request)
         {
@@ -48,20 +50,21 @@ namespace tarifkapida.Controllers
             var createdProfile = await userProfileService.CreateUserProfileAsync(request);
             return CreatedAtAction(nameof(GetUserProfile), new { userId = createdProfile.UserId }, createdProfile);
         }
+
         [HttpGet("ProfileExists/{userId}")]
         public async Task<ActionResult<bool>> ProfileExists(int userId)
         {
             var exists = await userProfileService.ProfileExistsAsync(userId);
             return Ok(exists);
         }
+
         [HttpPost("UploadUserProfilePhoto")]
-        public async Task<ActionResult> UploadProfilePhoto([FromBody] UserProfileRequest request)
+        public async Task<ActionResult> UploadUserProfilePhoto([FromBody] UserProfileRequest request)
         {
             try
             {
-                var updatedProfile = await userProfileService.UploadUserProfilePhotoAsync(request);
-                // API'den yeni fotoğraf url'sini döndür
-                return Ok(new { ProfileImageUrl = updatedProfile.ProfileImageUrl });
+                var updatedProfile = await userProfileService.UploadUserProfilePhotoBase64Async(request);
+                return Ok(new { ProfileImageBase64 = updatedProfile.ProfileImageBase64 });
             }
             catch (Exception ex)
             {
@@ -81,31 +84,18 @@ namespace tarifkapida.Controllers
         [HttpPost("DeleteUserProfilePhoto/{userId}")]
         public async Task<IActionResult> DeleteProfilePhoto(int userId)
         {
-            var profile = await userProfileService.GetUserProfileAsync(userId);
-            if (profile == null || string.IsNullOrEmpty(profile.ProfileImageUrl))
+            try
             {
-                return NotFound("Profile photo not found.");
+                var result = await userProfileService.DeleteUserProfilePhotoAsync(userId);
+                if (!result)
+                    return NotFound("Profile photo not found or already deleted.");
+
+                return NoContent();
             }
-            await DeleteFileAsync(profile.ProfileImageUrl);
-            await userProfileService.DeleteUserProfilePhotoAsync(userId);
-            return NoContent();
-        }        
-        [HttpGet("SaveFile")]
-        private async Task<string> SaveFileAsync(IFormFile file)
-        {
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "ProfilePhoto");
-            if (!Directory.Exists(uploadsFolder))
-                Directory.CreateDirectory(uploadsFolder);
-
-            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            catch (Exception ex)
             {
-                await file.CopyToAsync(fileStream);
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
-
-            return $"/images/ProfilePhoto/{uniqueFileName}";
         }
 
         [HttpPut("UpdateNotificationSettings")]
@@ -122,6 +112,7 @@ namespace tarifkapida.Controllers
             }
             return Ok(updatedSettings);
         }
+
         [HttpGet("GetNotificationSettings/{userId}")]
         public async Task<ActionResult<NotificationSettingsDto>> GetNotificationSettings(int userId)
         {
@@ -132,6 +123,7 @@ namespace tarifkapida.Controllers
             }
             return Ok(settings);
         }
+
         [HttpGet("LinkSocialAccount")]
         public async Task<IActionResult> LinkSocialAccount([FromQuery] int userId, [FromQuery] string provider, [FromQuery] string accessToken)
         {
@@ -147,6 +139,7 @@ namespace tarifkapida.Controllers
             }
             return BadRequest("Failed to link social account.");
         }
+
         [HttpGet("GetLinkedSocialAccounts/{userId}")]
         public async Task<ActionResult<List<SocialAccountDto>>> GetLinkedSocialAccounts(int userId)
         {
@@ -161,6 +154,7 @@ namespace tarifkapida.Controllers
             }
             return Ok(accounts);
         }
+
         private async Task DeleteFileAsync(string filePath)
         {
             var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filePath.TrimStart('/'));

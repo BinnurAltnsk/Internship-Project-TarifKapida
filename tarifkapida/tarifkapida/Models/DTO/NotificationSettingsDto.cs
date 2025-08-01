@@ -1,9 +1,8 @@
-﻿namespace tarifkapida.Models.DTO
+﻿namespace tarifkapida.Models.DTOs
 {
     public class NotificationSettingsDto
     {
-        public int UserId { get; internal set; }
-        public object NotificationSettings { get; internal set; }
-
+        public int UserId { get; set; }
+        public NotificationSettings? NotificationSettings { get; set; }
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace tarifkapida.Models.DTO
+﻿namespace tarifkapida.Models.DTOs
 {
     public class SocialAccountDto
     {
-        public object Provider { get; set; }
-        public object AccountId { get; set; }
+        public string Provider { get; set; } = string.Empty;
+        public string AccountId { get; set; } = string.Empty;
     }
 }

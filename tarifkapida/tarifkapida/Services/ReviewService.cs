@@ -115,5 +115,11 @@ namespace tarifkapida.Services
                 data = reviews
             };
         }
+        public async Task<List<Review>> GetReviewsByRecipeIdAsync(int recipeId)
+        {
+            return await _dbContext.REVIEW
+                .Where(r => r.RecipeId == recipeId)
+                .ToListAsync();
+        }
     }
 }

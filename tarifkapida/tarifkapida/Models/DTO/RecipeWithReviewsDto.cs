@@ -15,5 +15,7 @@ namespace tarifkapida.Models.DTO
         public int? CategoryId { get; set; }
         public string? CategoryName { get; set; }
         public List<ReviewDto> Reviews { get; set; } = new();
+        public double AverageRating { get; set; }
+        public int ReviewCount { get; set; }
     }
 }

@@ -45,7 +45,9 @@ namespace tarifkapida.Services
                     Username = review.User?.Username ?? "Bilinmeyen",
                     ReviewCreatedAt = review.ReviewCreatedAt,
                     ReviewUpdatedAt = review.ReviewUpdatedAt
-                }).ToList() ?? new List<ReviewDto>()
+                }).ToList() ?? new List<ReviewDto>(),
+                AverageRating = recipe.Reviews.Any() ? recipe.Reviews.Average(r => r.Rating) : 0,
+                ReviewCount = recipe.Reviews.Count
             }).ToList();
         }
 

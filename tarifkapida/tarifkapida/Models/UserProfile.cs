@@ -32,7 +32,7 @@ namespace tarifkapida.Models
         public DateTime? DateOfBirth { get; set; }
 
         [StringLength(500)]
-        public string? ProfileImageUrl { get; set; }
+        public string? ProfileImageBase64 { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
@@ -44,6 +44,7 @@ namespace tarifkapida.Models
         public virtual NotificationSettings? NotificationSettings { get; set; }
 
         public virtual LinkedSocialAccount? LinkedSocialAccount { get; set; }
-        public ICollection<LinkedSocialAccount> LinkedSocialAccounts { get; internal set; }
+
+        public ICollection<LinkedSocialAccount> LinkedSocialAccounts { get; internal set; } = new List<LinkedSocialAccount>();
     }
 }

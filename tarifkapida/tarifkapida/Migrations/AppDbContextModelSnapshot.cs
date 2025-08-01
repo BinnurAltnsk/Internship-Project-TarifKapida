@@ -226,7 +226,7 @@ namespace tarifkapida.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("ProfileImageUrl")
+                    b.Property<string>("ProfileImageBase64")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
