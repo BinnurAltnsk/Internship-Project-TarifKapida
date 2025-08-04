@@ -1,6 +1,7 @@
 ﻿using tarifkapida.Models.DTO;
 using tarifkapida.Models.DTOs;
 using tarifkapida.Models.Requests;
+using tarifkapida.Requests;
 
 namespace tarifkapida.Interfaces
 {
@@ -19,7 +20,7 @@ namespace tarifkapida.Interfaces
         Task<UserProfileDto> LinkSocialAccountAsync(int userId, string provider, SocialAccountRequest request);
         Task<UserProfileDto> UnlinkSocialAccountAsync(int userId, string provider);
         Task<List<SocialAccountDto>> GetLinkedSocialAccountsAsync(int userId);
-        
+        Task<bool> ChangePasswordAsync(ChangePasswordRequest request);
 
     }
 }

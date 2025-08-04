@@ -4,5 +4,16 @@ wwwroot\images\ProfilePhoto\2_1265e3f1-51e7-4373-8dd4-02f71e895039.jpg
 wwwroot\images\ProfilePhoto\baygınkopek.jpg
 wwwroot\images\ProfilePhoto\user2.jpg
 wwwroot\images\Recipes\ayranasicorbasi.jpg
+wwwroot\images\Recipes\baklava.jpg
+wwwroot\images\Recipes\cantık.jpg
+wwwroot\images\Recipes\elmadilimlipatetesköfte.jpg
+wwwroot\images\Recipes\iskender.jpg
+wwwroot\images\Recipes\kayseriyağlama.jpg
 wwwroot\images\Recipes\magnolya.jpg
+wwwroot\images\Recipes\mücver.jpg
+wwwroot\images\Recipes\profiterol.jpg
 wwwroot\images\Recipes\sarma.jpg
+wwwroot\images\Recipes\süthelvası.jpg
+wwwroot\images\Recipes\sütlaç.jpg
+wwwroot\images\Recipes\tavukdöner.jpg
+wwwroot\images\Recipes\tavuksebzelinoodle.jpg

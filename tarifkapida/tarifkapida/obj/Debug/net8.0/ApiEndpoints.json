@@ -867,6 +867,22 @@
   },
   {
     "ContainingType": "tarifkapida.Controllers.UserProfileController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/UserProfile/ChangePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "tarifkapida.Requests.ChangePasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tarifkapida.Controllers.UserProfileController",
     "Method": "CreateUserProfile",
     "RelativePath": "api/UserProfile/CreateUserProfile",
     "HttpMethod": "POST",

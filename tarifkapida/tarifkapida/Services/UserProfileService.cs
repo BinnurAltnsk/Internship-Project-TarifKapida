@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Text;
 using tarifkapida.Data;
 using tarifkapida.Interfaces;
 using tarifkapida.Models;
 using tarifkapida.Models.DTO;
 using tarifkapida.Models.DTOs;
 using tarifkapida.Models.Requests;
+using tarifkapida.Requests;
+using tarifkapida.Interfaces;
+using System.Security.Cryptography;
 
 namespace tarifkapida.Services
 {
@@ -266,6 +270,34 @@ namespace tarifkapida.Services
                 CreatedAt = profile.CreatedAt,
                 UpdatedAt = profile.UpdatedAt
             };
+        }
+        public async Task<bool> ChangePasswordAsync(ChangePasswordRequest request)
+        {
+            var user = await _dbContext.USER.FirstOrDefaultAsync(u => u.UserId == request.UserId);
+            if (user == null)
+                return false;
+
+            var currentPasswordHash = ComputeSha256Hash(request.CurrentPassword);
+            Console.WriteLine($"[DEBUG] user.Password: {user.Password}");
+            Console.WriteLine($"[DEBUG] currentPasswordHash: {currentPasswordHash}");
+
+            if (user.Password != currentPasswordHash)
+                return false;
+
+            user.Password = ComputeSha256Hash(request.NewPassword);
+            _dbContext.USER.Update(user);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        internal static string ComputeSha256Hash(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(bytes).Replace("-", "").ToLower();
+            }
         }
     }
 }

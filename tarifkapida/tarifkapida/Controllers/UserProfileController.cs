@@ -1,9 +1,12 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using tarifkapida.Interfaces;
 using tarifkapida.Models.DTO;
 using tarifkapida.Models.DTOs;
 using tarifkapida.Models.Requests;
+using tarifkapida.Requests;
+using tarifkapida.Services;
 
 namespace tarifkapida.Controllers
 {
@@ -154,6 +157,18 @@ namespace tarifkapida.Controllers
             }
             return Ok(accounts);
         }
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Geçersiz veri.");
+
+            var result = await userProfileService.ChangePasswordAsync(request);
+            if (!result)
+                return BadRequest("Şifre güncellenemedi. Mevcut şifrenizi doğru girdiğinizden emin olun.");
+
+            return Ok("Şifre başarıyla değiştirildi.");
+        }
 
         private async Task DeleteFileAsync(string filePath)
         {
@@ -164,5 +179,8 @@ namespace tarifkapida.Controllers
                 System.IO.File.Delete(fullPath);
             }
         }
+        
+
+
     }
 }

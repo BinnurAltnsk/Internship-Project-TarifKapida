@@ -22,6 +22,9 @@ namespace tarifkapida.Services
         }        
         public async Task<Users> CreateUserAsync(Users user)
         {
+            user.Password = UserProfileService.ComputeSha256Hash(user.Password);//1. dependency injection ile userprofileservice'ı mevcut service'a çağır
+                                                                                //2. sha256'ya dönüştürme fonksiypnunu kullan = 'den sonrasına.
+            Console.WriteLine("user: ", user);
             _dbContext.USER.Add(user);
             await _dbContext.SaveChangesAsync();
             return user;
